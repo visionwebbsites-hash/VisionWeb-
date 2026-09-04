@@ -24,9 +24,16 @@ Header com logo + nav + CTA; Hero "BELEZA QUE VALORIZA A SUA ESSÊNCIA"; barra d
 - SEO: title, meta description, keywords locais, lang pt-BR, favicon com a logo.
 - Verificado: curl nos 4 endpoints, 13 imagens HTTP 200, screenshots desktop (todas as seções) e mobile (menu overlay, navegação suave, sem overflow horizontal). Bug corrigido: overlay do menu mobile preso pelo backdrop-blur do header.
 
+## Atualizações (04/09/2026 — segundo ciclo, aprovado pelo cliente anterior mantido intacto)
+- Nova categoria de serviços "Estética Corporal" (Drenagem Linfática, Massagem Modeladora, Massagem Relaxante, Massagem Terapêutica, Shiatsu, Ventosaterapia) como card em destaque full-width.
+- Nova seção "Maquiagem" (capítulo 04, fundo espresso) com as 2 fotos reais de maquiagem — usadas exclusivamente ali.
+- Antes & Depois virou carrossel (embla) com 3 abas independentes: Cabelo (par real existente), Manicure (par real novo: unhas-antes/unhas-depois), Sobrancelhas (sem fotos enviadas — espaços reservados "Foto real em breve", sem inventar imagens). Setas + indicadores; swipe no mobile.
+- Foto real da fachada adicionada na seção Localização com legenda "Reconheça nosso espaço"; mapa agora em largura total abaixo.
+- Seção de depoimentos substituída pelas 4 avaliações reais fornecidas (Helena Scheunemann, Pollyana Rosa, Vanuza Gomes, Scheila Maria Fernandes de Oliveira), todas 5 estrelas; grid no desktop e carrossel com dots no mobile.
+- Capítulos renumerados 01–08 após inserção de Maquiagem. Nenhuma outra parte aprovada foi alterada.
+
 ## Backlog priorizado
-- P0: Receber e publicar depoimentos reais (endpoint POST /api/testimonials já existe; basta aprovar no banco `approved: true`).
-- P1: Substituir placeholder restante se a cliente enviar mais fotos (ex.: foto da fachada).
-- P1: Formulário de contato/leads no site (backend POST /api/leads pronto).
-- P2: Pixel Meta/Google Ads + GA4 para campanhas de tráfego pago.
-- P2: Versão em produção otimizada (build) e domínio próprio.
+- P0: Receber fotos reais de ANTES/DEPOIS de sobrancelhas para completar a 3ª aba do carrossel.
+- P1: Pixel Meta/Google Ads + GA4 para campanhas de tráfego pago.
+- P2: Mais pares de antes/depois por categoria (o carrossel já suporta múltiplos slides).
+- P2: Domínio próprio + build de produção.

@@ -50,6 +50,11 @@ export const IMAGES = {
   nailsRed: "/images/unhas-vermelhas.jpg",
   nailsLight: "/images/unhas-claras.jpg",
   nailDisplay: "/images/expositor-esmaltes.jpg",
+  nailsBefore: "/images/unhas-antes.jpg",
+  nailsAfter: "/images/unhas-depois.jpg",
+  makeup1: "/images/maquiagem-1.jpg",
+  makeup2: "/images/maquiagem-2.jpg",
+  facade: "/images/fachada.jpg",
 };
 
 export const SERVICES = [
@@ -86,6 +91,59 @@ export const SERVICES = [
     title: "Sobrancelhas",
     tagline: "Design que harmoniza a sua expressão",
     items: ["Design", "Henna"],
+  },
+  {
+    id: "estetica-corporal",
+    title: "Estética Corporal",
+    tagline: "Bem-estar e cuidado para o seu corpo",
+    featured: true,
+    items: [
+      "Drenagem Linfática",
+      "Massagem Modeladora",
+      "Massagem Relaxante",
+      "Massagem Terapêutica",
+      "Shiatsu",
+      "Ventosaterapia",
+    ],
+  },
+];
+
+export const BEFORE_AFTER = [
+  {
+    id: "cabelo",
+    label: "Cabelo",
+    pairs: [{ before: "/images/antes.jpg", after: "/images/depois.jpg" }],
+  },
+  {
+    id: "manicure",
+    label: "Manicure",
+    pairs: [
+      { before: "/images/unhas-antes.jpg", after: "/images/unhas-depois.jpg" },
+    ],
+  },
+  {
+    id: "sobrancelhas",
+    label: "Sobrancelhas",
+    pairs: [],
+  },
+];
+
+export const REVIEWS = [
+  {
+    name: "Helena Scheunemann",
+    text: "O atendimento aqui é muito bom. Os serviços e as profissionais são excelentes! O spa dos pés uma experiência maravilhosa! Recomendo muito!",
+  },
+  {
+    name: "Pollyana Rosa",
+    text: "Maravilhosa! Salão com ambiente agradável e confortável e serviço muito bem feito! Foi minha primeira vez mas já conquistaram uma cliente.",
+  },
+  {
+    name: "Vanuza Gomes",
+    text: "Un lugar super elegante e aconchegante para quem realmente procura um atendimento tive uma ótima experiência com a nail designer flor com a esmaltação em gel que sinceramente ela arrasa no trabalho gratidão equipe senhoritas M desde a parte de agendamento até a parte de atendimento obrigada a todas lindas! Logo estarei de volta 😊",
+  },
+  {
+    name: "Scheila Maria Fernandes de Oliveira",
+    text: "Primeira cliente do salao, qdo da abertura. Só elogios à equipe. Neia, proprietária, fina, chique, muito educada e atenciosa. Marcia e Ana Claudia ambas muito atenciosas, simpaticas, sempre preocupadas com o bem estar dos clientes. Super recomendo o salão. Venha e tenha a mesma experiência que eu tenho toda semana.",
   },
 ];
 

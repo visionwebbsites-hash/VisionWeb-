@@ -12,7 +12,7 @@ export const Differentials = () => (
   >
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <SectionHeading
-        chapter="05"
+        chapter="06"
         eyebrow="Por que a Senhorita M"
         title="CUIDADO EM CADA DETALHE"
         testId="diferenciais-heading"

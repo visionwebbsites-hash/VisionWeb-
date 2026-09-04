@@ -1,4 +1,4 @@
-import { Eye, Feather, Hand, Scissors } from "lucide-react";
+import { Eye, Feather, Hand, Scissors, Waves } from "lucide-react";
 import { SERVICES, WA_LINK } from "../data/site";
 import { Reveal, SectionHeading } from "./Reveal";
 import { WhatsAppIcon } from "./WhatsAppIcon";
@@ -8,6 +8,7 @@ const ICONS = {
   cabeleireira: Scissors,
   cilios: Eye,
   sobrancelhas: Feather,
+  "estetica-corporal": Waves,
 };
 
 export const Services = () => (
@@ -29,7 +30,7 @@ export const Services = () => (
         {SERVICES.map((cat, i) => {
           const Icon = ICONS[cat.id];
           return (
-            <Reveal key={cat.id} delay={i * 0.08}>
+            <Reveal key={cat.id} delay={i * 0.08} className={cat.featured ? "md:col-span-2" : ""}>
               <article
                 data-testid={`servicos-category-${cat.id}`}
                 className="group flex h-full flex-col rounded-3xl border border-[#ECCEC8] bg-white p-7 shadow-[0_1px_2px_rgba(44,24,16,0.04)] transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-[#B05B4B]/50 hover:shadow-[0_20px_40px_-20px_rgba(44,24,16,0.16)] sm:p-9"
@@ -48,7 +49,7 @@ export const Services = () => (
                 <p className="mt-1.5 text-sm italic text-[#B05B4B]">
                   {cat.tagline}
                 </p>
-                <ul className="mt-6 grid flex-1 grid-cols-1 gap-x-6 gap-y-2.5 sm:grid-cols-2">
+                <ul className={`mt-6 grid flex-1 grid-cols-1 gap-x-6 gap-y-2.5 sm:grid-cols-2 ${cat.featured ? "lg:grid-cols-3" : ""}`}>
                   {cat.items.map((item) => (
                     <li
                       key={item}

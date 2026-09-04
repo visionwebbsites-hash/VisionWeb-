@@ -1,19 +1,50 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { Quote } from "lucide-react";
+import useEmblaCarousel from "embla-carousel-react";
+import { Quote, Star } from "lucide-react";
+import { REVIEWS } from "../data/site";
 import { Reveal, SectionHeading } from "./Reveal";
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+const Stars = () => (
+  <div className="flex gap-1" aria-label="Avaliação: 5 de 5 estrelas">
+    {Array.from({ length: 5 }).map((_, i) => (
+      <Star key={i} size={15} className="fill-[#B05B4B] text-[#B05B4B]" />
+    ))}
+  </div>
+);
+
+const ReviewCard = ({ review, testId }) => (
+  <figure
+    data-testid={testId}
+    className="flex h-full flex-col gap-5 rounded-3xl border border-[#ECCEC8] bg-white p-7 shadow-[0_1px_2px_rgba(44,24,16,0.04)] transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-[#B05B4B]/50 hover:shadow-[0_20px_40px_-20px_rgba(44,24,16,0.16)]"
+  >
+    <div className="flex items-center justify-between">
+      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#FAF0EE] text-[#B05B4B]">
+        <Quote size={16} strokeWidth={1.6} />
+      </span>
+      <Stars />
+    </div>
+    <blockquote className="flex-1 font-serif text-base italic leading-relaxed text-[#4A3B34]">
+      “{review.text}”
+    </blockquote>
+    <figcaption className="border-t border-[#ECCEC8]/70 pt-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#B05B4B]">
+      {review.name}
+    </figcaption>
+  </figure>
+);
 
 export const Testimonials = () => {
-  const [testimonials, setTestimonials] = useState([]);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" });
+  const [selected, setSelected] = useState(0);
 
   useEffect(() => {
-    axios
-      .get(`${API}/testimonials`)
-      .then((res) => setTestimonials(res.data.testimonials || []))
-      .catch(() => setTestimonials([]));
-  }, []);
+    if (!emblaApi) return;
+    const onSelect = () => setSelected(emblaApi.selectedScrollSnap());
+    emblaApi.on("select", onSelect);
+    onSelect();
+    return () => {
+      emblaApi.off("select", onSelect);
+    };
+  }, [emblaApi]);
 
   return (
     <section
@@ -23,54 +54,46 @@ export const Testimonials = () => {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          chapter="06"
-          eyebrow="Depoimentos"
-          title="QUEM VIVE A EXPERIÊNCIA, RECOMENDA"
+          chapter="07"
+          eyebrow="Avaliações"
+          title="O QUE NOSSAS CLIENTES DIZEM"
+          sub="A experiência de quem já viveu o cuidado e o atendimento da Senhorita M."
           testId="depoimentos-heading"
         />
 
-        {testimonials.length === 0 ? (
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {[1, 2, 3].map((n) => (
-              <Reveal key={n} delay={n * 0.08}>
-                <div
-                  data-testid={`depoimentos-card-placeholder-${n}`}
-                  className="flex h-full min-h-[210px] flex-col items-center justify-center gap-4 rounded-3xl border border-dashed border-[#C06C5C]/40 bg-white/60 p-8 text-center"
-                >
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#FAF0EE] text-[#B05B4B]">
-                    <Quote size={18} strokeWidth={1.6} />
-                  </span>
-                  <p className="font-serif text-lg italic text-[#7F3B2E]">
-                    Espaço reservado para depoimentos reais de clientes
-                  </p>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B05B4B]/70">
-                    Em breve
-                  </p>
+        <div className="mt-14 hidden gap-6 md:grid md:grid-cols-2 lg:grid-cols-4">
+          {REVIEWS.map((r, i) => (
+            <Reveal key={r.name} delay={i * 0.08} className="h-full">
+              <ReviewCard review={r} testId={`depoimentos-card-${i + 1}`} />
+            </Reveal>
+          ))}
+        </div>
+
+        <div className="mt-12 md:hidden">
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex">
+              {REVIEWS.map((r, i) => (
+                <div key={r.name} className="min-w-0 flex-[0_0_88%] pr-4 first:pl-0">
+                  <ReviewCard review={r} testId={`depoimentos-card-mobile-${i + 1}`} />
                 </div>
-              </Reveal>
+              ))}
+            </div>
+          </div>
+          <div className="mt-6 flex items-center justify-center gap-2" data-testid="depoimentos-dots">
+            {REVIEWS.map((_, i) => (
+              <button
+                key={i}
+                data-testid={`depoimentos-dot-${i}`}
+                onClick={() => emblaApi?.scrollTo(i)}
+                aria-label={`Ir para a avaliação ${i + 1}`}
+                className={`h-2 rounded-full transition-[width,background-color] duration-300 ${
+                  selected === i ? "w-6 bg-[#B05B4B]" : "w-2 bg-[#ECCEC8]"
+                }`}
+              />
             ))}
           </div>
-        ) : (
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {testimonials.map((t, i) => (
-              <Reveal key={t.id || i} delay={i * 0.08}>
-                <figure
-                  data-testid={`depoimentos-card-${i}`}
-                  className="flex h-full flex-col gap-5 rounded-3xl border border-[#ECCEC8] bg-white p-8"
-                >
-                  <Quote size={22} className="text-[#C06C5C]" strokeWidth={1.4} />
-                  <blockquote className="flex-1 font-serif text-lg italic leading-relaxed text-[#4A3B34]">
-                    “{t.text}”
-                  </blockquote>
-                  <figcaption className="text-xs font-semibold uppercase tracking-[0.22em] text-[#B05B4B]">
-                    {t.name}
-                  </figcaption>
-                </figure>
-              </Reveal>
-            ))}
-          </div>
-        )}
+        </div>
       </div>
     </section>
   );
-};
+}
