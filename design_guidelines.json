@@ -1,0 +1,443 @@
+{
+  "project_name": "Senhorita M — Espaço de Beleza",
+  "app_type": "landing_page",
+  "archetype": "LUXURY_EDITORIAL_BEAUTY",
+  "brand_info": {
+    "name": "SENHORITA M — ESPAÇO DE BELEZA",
+    "short_name": "Senhorita M",
+    "location": "Av. Madre Benvenuta, 1548 — Santa Mônica, Florianópolis — SC",
+    "instagram_handle": "@senhoritamsalao",
+    "instagram_url": "https://instagram.com/senhoritamsalao",
+    "whatsapp_display": "(48) 99211-8889",
+    "whatsapp_number": "5548992118889",
+    "whatsapp_url": "https://wa.me/5548992118889?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20um%20hor%C3%A1rio%20na%20Senhorita%20M!",
+    "maps_url": "https://maps.google.com/?q=Av.+Madre+Benvenuta,+1548+-+Santa+M%C3%B4nica,+Florian%C3%B3polis+-+SC"
+  },
+  "emotional_tone": [
+    "Elegance",
+    "Femininity",
+    "Sophistication",
+    "Beauty",
+    "Comfort",
+    "Exclusivity",
+    "High-end Professionalism"
+  ],
+  "color_system": {
+    "theme_mode": "light_editorial",
+    "palette": {
+      "terracotta_primary": "#B05B4B",
+      "terracotta_hover": "#984A3B",
+      "terracotta_dark": "#7F3B2E",
+      "burnt_rose": "#C06C5C",
+      "rose_blush_tint": "#FAF0EE",
+      "rose_subtle_border": "#ECCEC8",
+      "cream_bg": "#FDFBF7",
+      "warm_bone_bg": "#F9F5F0",
+      "sand_neutral": "#EFE7DF",
+      "muted_stone": "#E5DAD0",
+      "dark_espresso_text": "#2C1810",
+      "dark_accent": "#3D2218",
+      "body_text": "#4A3B34",
+      "subtle_text": "#827168",
+      "white_pure": "#FFFFFF",
+      "glass_header": "rgba(253, 251, 247, 0.85)"
+    },
+    "forbidden_colors": [
+      "baby pink (#FFB6C1)",
+      "neon pink (#FF1493)",
+      "magenta (#FF00FF)",
+      "purple (#800080)",
+      "green (#008000)",
+      "blue (#0000FF)",
+      "teal green / teal blue (#1B93A4)",
+      "overly vibrant electric tones"
+    ],
+    "gradients": {
+      "hero_subtle_radial": "radial-gradient(circle at 50% 0%, rgba(192, 108, 92, 0.12) 0%, rgba(253, 251, 247, 0) 70%)",
+      "terracotta_cta": "linear-gradient(135deg, #B05B4B 0%, #984A3B 100%)",
+      "frame_placeholder": "linear-gradient(135deg, #FAF0EE 0%, #EFE7DF 100%)"
+    }
+  },
+  "typography": {
+    "fonts": {
+      "heading": "Cormorant Garamond, Cormorant, Playfair Display, Georgia, serif",
+      "body": "Plus Jakarta Sans, Outfit, DM Sans, sans-serif",
+      "eyebrow_mono": "DM Sans, sans-serif"
+    },
+    "google_fonts_embed_url": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap",
+    "hierarchy": {
+      "hero_title": "text-4xl sm:text-5xl lg:text-6xl font-serif font-medium text-[#2C1810] leading-[1.1] tracking-tight",
+      "section_title": "text-3xl sm:text-4xl lg:text-5xl font-serif font-medium text-[#2C1810] leading-[1.15] tracking-tight",
+      "card_title": "text-xl sm:text-2xl font-serif font-medium text-[#2C1810]",
+      "subhead": "text-base sm:text-lg lg:text-xl font-sans font-normal text-[#827168] leading-relaxed",
+      "eyebrow_label": "text-xs sm:text-sm font-sans font-semibold uppercase tracking-[0.25em] text-[#B05B4B]",
+      "button_text": "text-sm sm:text-base font-sans font-semibold uppercase tracking-[0.1em]"
+    }
+  },
+  "spacing_and_layout": {
+    "container_max_width": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+    "section_padding": "py-16 sm:py-24 lg:py-32",
+    "grid_gap": "gap-6 sm:gap-8 lg:gap-12",
+    "bento_ratios": "asymmetric high-fashion grids with generous whitespace and 1px terracotta borders",
+    "border_radius": {
+      "pill": "rounded-full",
+      "card": "rounded-2xl",
+      "frame": "rounded-xl",
+      "subtle": "rounded-md"
+    }
+  },
+  "motion_and_animations": {
+    "library": "framer-motion",
+    "lenis_smooth_scroll": true,
+    "effects": {
+      "line_by_line_headline_reveal": "Staggered fade-and-slide up for editorial titles",
+      "hover_lift": "hover:-translate-y-1 transition-transform duration-300 ease-out",
+      "subtle_border_glow": "transition-colors duration-300 hover:border-[#B05B4B]",
+      "pulse_whatsapp_float": "animate-bounce or smooth glowing pulse for floating WhatsApp CTA"
+    }
+  },
+  "placeholder_frames_strategy": {
+    "mandatory_rule": "NO AI-generated images, NO generic stock photos. Image slots must be elegant branded placeholder frames labeled for later replacement.",
+    "visual_style": {
+      "background": "bg-gradient-to-br from-[#FAF0EE] to-[#EFE7DF]",
+      "border": "border border-[#ECCEC8]",
+      "aspect_ratios": ["aspect-[4/3]", "aspect-[3/4]", "aspect-square"],
+      "inner_element": "Elegant terracotta badge with soft icon + italic serif text: 'Foto do Salão — Em Breve' or 'Resultado Real — Em Breve'",
+      "hover_effect": "object-cover with subtle scale transform and refined border highlight"
+    }
+  },
+  "sections_blueprint": [
+    {
+      "id": "header",
+      "name": "Header / Navigation",
+      "type": "sticky_glass",
+      "content": "Logo 'SENHORITA M' on left, Nav links (Início, Sobre, Serviços, Resultados, Contato) + highlighted 'AGENDAR PELO WHATSAPP' CTA. Mobile: Logo + WhatsApp quick button + Hamburger Sheet drawer.",
+      "data_testids": [
+        "nav-header",
+        "nav-logo-link",
+        "nav-link-inicio",
+        "nav-link-sobre",
+        "nav-link-servicos",
+        "nav-link-resultados",
+        "nav-link-contato",
+        "nav-cta-whatsapp-button",
+        "mobile-menu-trigger",
+        "mobile-menu-close"
+      ]
+    },
+    {
+      "id": "hero",
+      "name": "Hero Section",
+      "type": "editorial_hero",
+      "badge": "Santa Mônica • Florianópolis",
+      "headline": "BELEZA QUE VALORIZA A SUA ESSÊNCIA",
+      "subtitle": "Um espaço pensado para você se cuidar, se sentir ainda mais bonita e viver uma experiência de beleza completa em Florianópolis.",
+      "ctas": {
+        "primary": "AGENDAR PELO WHATSAPP",
+        "secondary": "CONHECER NOSSOS SERVIÇOS"
+      },
+      "hero_visual": "Editorial 3-frame overlapping composition using Senhorita M branded placeholder frames",
+      "data_testids": [
+        "hero-section",
+        "hero-badge-location",
+        "hero-headline",
+        "hero-subtitle",
+        "hero-primary-cta-whatsapp",
+        "hero-secondary-cta-servicos"
+      ]
+    },
+    {
+      "id": "trust-bar",
+      "name": "Trust & Experience Bar",
+      "type": "horizontal_pills_grid",
+      "items": [
+        "Atendimento personalizado",
+        "Profissionais especializados",
+        "Ambiente acolhedor",
+        "Experiência em beleza"
+      ],
+      "data_testids": [
+        "trust-bar-section",
+        "trust-item-0",
+        "trust-item-1",
+        "trust-item-2",
+        "trust-item-3"
+      ]
+    },
+    {
+      "id": "sobre",
+      "name": "Sobre a Senhorita M",
+      "type": "split_editorial_story",
+      "eyebrow": "CONHEÇA A SENHORITA M",
+      "headline": "UM ESPAÇO FEITO PARA VOCÊ",
+      "paragraphs": [
+        "A Senhorita M nasceu do desejo de proporcionar mais do que serviços de estética: criamos um refúgio de autocuidado e bem-estar no coração de Florianópolis.",
+        "Em nosso espaço no bairro Santa Mônica, cada detalhe foi arquitetado para oferecer conforto absoluto, biossegurança rigorosa e atendimento verdadeiramente exclusivo."
+      ],
+      "cta": "QUERO AGENDAR",
+      "data_testids": [
+        "sobre-section",
+        "sobre-eyebrow",
+        "sobre-headline",
+        "sobre-[#text]",
+        "sobre-cta-whatsapp"
+      ]
+    },
+    {
+      "id": "servicos",
+      "name": "Nossos Serviços",
+      "type": "tabbed_or_grid_cards",
+      "eyebrow": "EXPERIÊNCIA COMPLETA",
+      "headline": "TUDO PARA REALÇAR A SUA BELEZA",
+      "categories": [
+        {
+          "id": "nail-designer",
+          "title": "Nail Designer",
+          "subtitle": "Cuidados e alongamentos de alta precisão para suas unhas",
+          "items": [
+            "Alongamento em Gel",
+            "Banho de Gel",
+            "Esmaltação em Gel",
+            "Manicure Tradicional",
+            "Pedicure Tradicional",
+            "Spa dos Pés",
+            "Remoção de Alongamento",
+            "Manutenção de Gel",
+            "Nail Art Personalizada"
+          ],
+          "cta": "AGENDAR PELO WHATSAPP"
+        },
+        {
+          "id": "cabeleireira",
+          "title": "Cabeleireira",
+          "subtitle": "Cortes, mechas e tratamentos capilares de alta performance",
+          "items": [
+            "Corte Feminino & Escova",
+            "Tratamentos Capilares de Alta Performance",
+            "Mechas / Loiras / Morena Iluminada",
+            "Penteados Sociais"
+          ],
+          "cta": "AGENDAR PELO WHATSAPP"
+        },
+        {
+          "id": "cilios",
+          "title": "Cílios",
+          "subtitle": "Olhar marcante com extensões leves e técnicas modernas",
+          "items": [
+            "Extensão de Cílios Volume Brasileiro",
+            "Extensão de Cílios Volume Russo",
+            "Lash Lifting com Nutrição",
+            "Manutenção de Cílios"
+          ],
+          "cta": "AGENDAR PELO WHATSAPP"
+        },
+        {
+          "id": "sobrancelhas",
+          "title": "Sobrancelhas",
+          "subtitle": "Design estratégico para harmonizar sua expressão facial",
+          "items": [
+            "Design de Sobrancelhas com Henna/Tintura",
+            "Brow Lamination"
+          ],
+          "cta": "AGENDAR PELO WHATSAPP"
+        }
+      ],
+      "data_testids": [
+        "servicos-section",
+        "servicos-category-nail-designer",
+        "servicos-category-cabeleireira",
+        "servicos-category-cilios",
+        "servicos-category-sobrancelhas",
+        "servicos-cta-nail-designer",
+        "servicos-cta-cabeleireira",
+        "servicos-cta-cilios",
+        "servicos-cta-sobrancelhas"
+      ]
+    },
+    {
+      "id": "resultados",
+      "name": "Resultados Transformadores",
+      "type": "before_after_gallery",
+      "eyebrow": "TRANSFORMAÇÃO & EXCELÊNCIA",
+      "headline": "RESULTADOS QUE FALAM POR SI",
+      "subtitle": "Acompanhe alguns dos nossos resultados em unhas, cílios, cabelos e sobrancelhas.",
+      "components": [
+        "Interactive Before/After Slider card highlighted with branded frames",
+        "Filterable gallery tabs: Todos, Unhas, Cabelos, Cílios & Sobrancelhas",
+        "Direct WhatsApp CTA on each showcase card"
+      ],
+      "data_testids": [
+        "resultados-section",
+        "resultados-slider-handle",
+        "resultados-filter-all",
+        "resultados-filter-unhas",
+        "resultados-filter-cabelos",
+        "resultados-filter-cilios-sobrancelhas",
+        "resultados-card-cta-whatsapp"
+      ]
+    },
+    {
+      "id": "nosso-espaco",
+      "name": "Nosso Espaço",
+      "type": "editorial_gallery_masonry",
+      "eyebrow": "CONFORTO & ELEGÂNCIA",
+      "headline": "UM AMBIENTE PENSADO PARA VOCÊ",
+      "subtitle": "Localizado na Av. Madre Benvenuta, no bairro Santa Mônica, um ambiente sofisticado, climatizado e preparado para seu momento especial.",
+      "composition": "3 interior photos composition rendered as premium branded placeholder frames with subtle terracotta hover state",
+      "data_testids": [
+        "nosso-espaco-section",
+        "espaco-frame-1",
+        "espaco-frame-2",
+        "espaco-frame-3"
+      ]
+    },
+    {
+      "id": "diferenciais",
+      "name": "Nossos Diferenciais",
+      "type": "grid_4_cards",
+      "eyebrow": "POR QUE ESCOLHER A SENHORITA M",
+      "headline": "O PADRÃO DE QUALIDADE QUE VOCÊ MERECE",
+      "items": [
+        {
+          "title": "Pontualidade e Respeito ao Tempo",
+          "desc": "Horários cumpridos à risca para que sua rotina flua sem imprevistos."
+        },
+        {
+          "title": "Produtos de Linha Premium",
+          "desc": "Utilizamos apenas marcas renomadas mundialmente e dermatologicamente testadas."
+        },
+        {
+          "title": "Biossegurança Rigorosa",
+          "desc": "Materiais 100% esterilizados em autoclave e descartáveis de uso único."
+        },
+        {
+          "title": "Bebidas e Mimos Cortesia",
+          "desc": "Cafés especiais, capuchinos, chás e taça de espumante para relaxar."
+        }
+      ],
+      "data_testids": [
+        "diferenciais-section",
+        "diferencial-item-0",
+        "diferencial-item-1",
+        "diferencial-item-2",
+        "diferencial-item-3"
+      ]
+    },
+    {
+      "id": "depoimentos",
+      "name": "Depoimentos de Clientes",
+      "type": "empty_structure_ready",
+      "eyebrow": "AVALIAÇÕES",
+      "headline": "QUEM VIVE A EXPERIÊNCIA, RECOMENDA",
+      "subtitle": "A satisfação de nossas clientes é nossa maior assinatura de qualidade.",
+      "note": "Empty premium structure ready for real client testimonials (no fake or invented testimonials). Shows elegant placeholders stating 'Espaço reservado para avaliações reais de clientes no Google e Instagram.'",
+      "data_testids": [
+        "depoimentos-section",
+        "depoimentos-card-placeholder-1",
+        "depoimentos-card-placeholder-2",
+        "depoimentos-card-placeholder-3"
+      ]
+    },
+    {
+      "id": "localizacao",
+      "name": "Localização e Contato",
+      "type": "split_info_and_map",
+      "eyebrow": "VENHA NOS VISITAR",
+      "headline": "ENCONTRE A SENHORITA M EM FLORIANÓPOLIS",
+      "address": "Av. Madre Benvenuta, 1548 — Santa Mônica, Florianópolis — SC",
+      "ctas": [
+        {
+          "label": "COMO CHEGAR (GOOGLE MAPS)",
+          "url": "https://maps.google.com/?q=Av.+Madre+Benvenuta,+1548+-+Santa+M%C3%B4nica,+Florian%C3%B3polis+-+SC",
+          "data_testid": "localizacao-button-maps"
+        },
+        {
+          "label": "INSTAGRAM (@SENHORITAMSALAO)",
+          "url": "https://instagram.com/senhoritamsalao",
+          "data_testid": "localizacao-button-instagram"
+        },
+        {
+          "label": "WHATSAPP (48) 99211-8889",
+          "url": "https://wa.me/5548992118889?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20um%20hor%C3%A1rio%20na%20Senhorita%20M!",
+          "data_testid": "localizacao-button-whatsapp"
+        }
+      ],
+      "map_component": "Embedded interactive Google Map frame configured for Santa Mônica, Florianópolis",
+      "data_testids": [
+        "localizacao-section",
+        "localizacao-address-text",
+        "localizacao-button-maps",
+        "localizacao-button-instagram",
+        "localizacao-button-whatsapp",
+        "localizacao-map-frame"
+      ]
+    },
+    {
+      "id": "cta-final",
+      "name": "CTA Final de Conversão",
+      "type": "full_width_banner",
+      "headline": "PRONTA PARA CUIDAR DE VOCÊ?",
+      "subtitle": "Agende seu horário com nossas especialistas agora mesmo pelo WhatsApp e garanta seu momento exclusivo de beleza.",
+      "cta": "AGENDAR PELO WHATSAPP",
+      "data_testids": [
+        "cta-final-section",
+        "cta-final-headline",
+        "cta-final-button-whatsapp"
+      ]
+    },
+    {
+      "id": "footer",
+      "name": "Footer Institucional",
+      "type": "editorial_footer",
+      "content": "Logo Senhorita M, Endereço, Links de navegação rápida, Instagram, WhatsApp, Política de Privacidade e Direitos Autorais.",
+      "copyright": "© 2026 Senhorita M Espaço de Beleza. Todos os direitos reservados.",
+      "data_testids": [
+        "footer-section",
+        "footer-logo",
+        "footer-link-inicio",
+        "footer-link-sobre",
+        "footer-link-servicos",
+        "footer-link-resultados",
+        "footer-link-contato",
+        "footer-instagram-link",
+        "footer-whatsapp-link",
+        "footer-copyright-text"
+      ]
+    },
+    {
+      "id": "whatsapp-floating",
+      "name": "Botão Flutuante do WhatsApp",
+      "type": "fixed_bottom_right",
+      "tooltip": "Agende seu horário",
+      "data_testids": [
+        "whatsapp-floating-button",
+        "whatsapp-floating-tooltip"
+      ]
+    }
+  ],
+  "data_testid_convention": {
+    "rule": "Every button, link, interactive card, tab, form element, section wrapper, and text readout MUST have a data-testid attribute in lower-kebab-case.",
+    "examples": {
+      "button": "data-testid=\"hero-primary-cta-whatsapp\"",
+      "nav": "data-testid=\"nav-link-servicos\"",
+      "card": "data-testid=\"servicos-category-nail-designer\"",
+      "floating_cta": "data-testid=\"whatsapp-floating-button\""
+    }
+  },
+  "instructions_to_main_agent": [
+    "Install and integrate Google Fonts Cormorant Garamond and Plus Jakarta Sans in public/index.html or index.css.",
+    "Implement Lenis or smooth window scrolling for seamless navigation across sections.",
+    "Ensure ALL WhatsApp buttons link directly to https://wa.me/5548992118889 with pre-filled message.",
+    "Strictly follow the color palette (#B05B4B, #C06C5C, #2C1810, #FDFBF7, #FAF0EE). Do NOT use forbidden pinks, purples, or greens.",
+    "Build elegant Senhorita M branded placeholder frames with subtle terracotta badge text ('Foto do Salão — Em Breve' / 'Resultado Real — Em Breve'). Do NOT use generic placeholder URLs or AI stock images.",
+    "Ensure every interactive element has a unique, role-based data-testid attribute.",
+    "Build interactive Before/After comparison slider in the Resultados section.",
+    "Add responsive mobile drawer navigation with quick WhatsApp CTA."
+  ],
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "Avoid generic centered AI layouts; use high-fashion asymmetrical grids and generous whitespace.",
+    "Do NOT use transparent backgrounds on fixed or floating headers; use backdrop-blur with semi-opaque cream/bone white.",
+    "All buttons must feature tactile hover states (-translate-y-0.5, shadow-md, smooth color transition).",
+    "Ensure full accessibility compliance with minimum 4.5:1 contrast ratios for all body text against backgrounds."
+  ]
+}
