@@ -54,6 +54,11 @@ export const IMAGES = {
   nailsAfter: "/images/unhas-depois.jpg",
   makeup1: "/images/maquiagem-1.jpg",
   makeup2: "/images/maquiagem-2.jpg",
+  makeup3: "/images/maquiagem-3.jpg",
+  makeup4: "/images/maquiagem-4.jpg",
+  browsBefore: "/images/sobrancelhas-antes.jpg",
+  browsAfter: "/images/sobrancelhas-depois.jpg",
+  hairExtra1: "/images/cabelo-extra-1.jpg",
   facade: "/images/fachada.jpg",
 };
 
@@ -113,6 +118,7 @@ export const BEFORE_AFTER = [
     id: "cabelo",
     label: "Cabelo",
     pairs: [{ before: "/images/antes.jpg", after: "/images/depois.jpg" }],
+    extras: [{ src: "/images/cabelo-extra-1.jpg", label: "Resultado de cabelo" }],
   },
   {
     id: "manicure",
@@ -124,7 +130,12 @@ export const BEFORE_AFTER = [
   {
     id: "sobrancelhas",
     label: "Sobrancelhas",
-    pairs: [],
+    pairs: [
+      {
+        before: "/images/sobrancelhas-antes.jpg",
+        after: "/images/sobrancelhas-depois.jpg",
+      },
+    ],
   },
 ];
 

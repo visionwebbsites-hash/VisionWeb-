@@ -104,6 +104,28 @@ export const BeforeAfter = () => {
         </div>
       </div>
 
+      {active.extras?.length > 0 && (
+        <div
+          data-testid={`antes-depois-${cat}-extras`}
+          className={`mx-auto mt-5 grid max-w-4xl gap-3 sm:gap-5 ${
+            active.extras.length > 1 ? "grid-cols-2" : "grid-cols-1 sm:max-w-md"
+          }`}
+        >
+          {active.extras.map((extra, i) => (
+            <PhotoSlot
+              key={i}
+              src={extra.src}
+              label={extra.label}
+              tag="Senhorita M"
+              ratio="aspect-[3/4]"
+              testId={`antes-depois-${cat}-extra-${i}`}
+              alt={`${extra.label} — Senhorita M Espaço de Beleza`}
+              className="rounded-2xl"
+            />
+          ))}
+        </div>
+      )}
+
       {multiple && (
         <div className="mt-7 flex items-center justify-center gap-5">
           <button

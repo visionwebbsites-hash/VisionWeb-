@@ -32,8 +32,15 @@ Header com logo + nav + CTA; Hero "BELEZA QUE VALORIZA A SUA ESSÊNCIA"; barra d
 - Seção de depoimentos substituída pelas 4 avaliações reais fornecidas (Helena Scheunemann, Pollyana Rosa, Vanuza Gomes, Scheila Maria Fernandes de Oliveira), todas 5 estrelas; grid no desktop e carrossel com dots no mobile.
 - Capítulos renumerados 01–08 após inserção de Maquiagem. Nenhuma outra parte aprovada foi alterada.
 
+## Atualizações (05/09/2026 — terceiro ciclo, apenas acréscimos)
+- Sobrancelhas: par real ANTES/DEPOIS adicionado à aba Sobrancelhas do carrossel (sobrancelhas-antes.jpg / sobrancelhas-depois.jpg) — placeholders removidos dessa aba.
+- Maquiagem: 2 novas fotos reais acrescentadas (maquiagem-3.jpg, maquiagem-4.jpg), total 4 na galeria; fundo da seção alterado de espresso (#2C1810) para o rose terracota da marca (gradiente #C06C5C → #B05B4B → #7F3B2E), a pedido do cliente.
+- Cabelo: 1 nova foto de resultado (cabelo-extra-1.jpg) acrescentada na aba Cabelo do carrossel, abaixo do par antes/depois (via campo `extras` em BEFORE_AFTER).
+- ATENÇÃO: o cliente mencionou 6 fotos, mas apenas 5 chegaram — a 2ª foto de cabelo (FOTO 6) NÃO foi recebida.
+- Nenhuma parte aprovada foi removida ou alterada além do pedido.
+
 ## Backlog priorizado
-- P0: Receber fotos reais de ANTES/DEPOIS de sobrancelhas para completar a 3ª aba do carrossel.
+- P0: Receber a 6ª foto (segundo resultado de cabelo) que não chegou no último envio.
 - P1: Pixel Meta/Google Ads + GA4 para campanhas de tráfego pago.
 - P2: Mais pares de antes/depois por categoria (o carrossel já suporta múltiplos slides).
 - P2: Domínio próprio + build de produção.

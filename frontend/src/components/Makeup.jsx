@@ -7,13 +7,16 @@ export const Makeup = () => (
   <section
     id="maquiagem"
     data-testid="maquiagem-section"
-    className="grain relative overflow-hidden bg-[#2C1810] py-20 sm:py-28"
+    className="grain relative overflow-hidden py-20 sm:py-28"
+    style={{
+      background: "linear-gradient(150deg, #C06C5C 0%, #B05B4B 48%, #7F3B2E 100%)",
+    }}
   >
     <div
       className="pointer-events-none absolute inset-0"
       style={{
         background:
-          "radial-gradient(circle at 50% -10%, rgba(192,108,92,0.28) 0%, rgba(44,24,16,0) 60%)",
+          "radial-gradient(circle at 50% -10%, rgba(253,251,247,0.22) 0%, rgba(176,91,75,0) 60%)",
       }}
     />
     <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -44,6 +47,26 @@ export const Makeup = () => (
             ratio="aspect-[3/4]"
             testId="maquiagem-photo-2"
             alt="Resultado de maquiagem profissional na Senhorita M Espaço de Beleza"
+            className="rounded-[1.4rem] border-white/10 shadow-[0_25px_50px_-25px_rgba(0,0,0,0.55)]"
+          />
+        </Reveal>
+        <Reveal delay={0.25}>
+          <PhotoSlot
+            src={IMAGES.makeup3}
+            label="Maquiagem Senhorita M"
+            ratio="aspect-[3/4]"
+            testId="maquiagem-photo-3"
+            alt="Maquiagem profissional com ondas realizada na Senhorita M"
+            className="rounded-[1.4rem] border-white/10 shadow-[0_25px_50px_-25px_rgba(0,0,0,0.55)]"
+          />
+        </Reveal>
+        <Reveal delay={0.35} className="sm:pt-12">
+          <PhotoSlot
+            src={IMAGES.makeup4}
+            label="Maquiagem Senhorita M"
+            ratio="aspect-[3/4]"
+            testId="maquiagem-photo-4"
+            alt="Resultado de maquiagem profissional na Senhorita M"
             className="rounded-[1.4rem] border-white/10 shadow-[0_25px_50px_-25px_rgba(0,0,0,0.55)]"
           />
         </Reveal>
