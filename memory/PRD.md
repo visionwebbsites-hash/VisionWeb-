@@ -39,6 +39,9 @@ Header com logo + nav + CTA; Hero "BELEZA QUE VALORIZA A SUA ESSÊNCIA"; barra d
 - ATENÇÃO: o cliente mencionou 6 fotos, mas apenas 5 chegaram — a 2ª foto de cabelo (FOTO 6) NÃO foi recebida.
 - Nenhuma parte aprovada foi removida ou alterada além do pedido.
 
+## Atualizações (05/09/2026 — quarto ciclo)
+- Google Tag Manager instalado globalmente em `/app/frontend/public/index.html`: snippet principal no topo do `<head>` (após charset) e snippet `<noscript>` imediatamente após `<body>`. Container ID: GTM-TG65Q8W9. Verificado: `dataLayer` ativo e `gtm.js?id=GTM-TG65Q8W9` carregando; site renderiza normalmente.
+
 ## Backlog priorizado
 - P0: Receber a 6ª foto (segundo resultado de cabelo) que não chegou no último envio.
 - P1: Pixel Meta/Google Ads + GA4 para campanhas de tráfego pago.
