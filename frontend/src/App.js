@@ -7,7 +7,6 @@ import { Marquee } from "./components/Marquee";
 import { About } from "./components/About";
 import { Services } from "./components/Services";
 import { Results } from "./components/Results";
-import { Makeup } from "./components/Makeup";
 import { Space } from "./components/Space";
 import { Differentials } from "./components/Differentials";
 import { Testimonials } from "./components/Testimonials";
@@ -43,7 +42,6 @@ export default function App() {
         <About />
         <Services />
         <Results />
-        <Makeup />
         <Space />
         <Differentials />
         <Testimonials />

@@ -1,4 +1,4 @@
-import { Eye, Feather, Hand, Scissors, Waves } from "lucide-react";
+import { Eye, Feather, Hand, Scissors, Sparkles, Waves } from "lucide-react";
 import { SERVICES, WA_LINK } from "../data/site";
 import { Reveal, SectionHeading } from "./Reveal";
 import { WhatsAppIcon } from "./WhatsAppIcon";
@@ -8,6 +8,7 @@ const ICONS = {
   cabeleireira: Scissors,
   cilios: Eye,
   sobrancelhas: Feather,
+  maquiagem: Sparkles,
   "estetica-corporal": Waves,
 };
 

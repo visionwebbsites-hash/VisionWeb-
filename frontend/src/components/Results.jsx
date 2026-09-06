@@ -7,10 +7,14 @@ import { WhatsAppIcon } from "./WhatsAppIcon";
 const GALLERY = [
   { src: IMAGES.hairWaves, label: "Cabelo longo com ondas", testId: "resultados-gallery-ondas" },
   { src: IMAGES.nailsRed, label: "Unhas vermelhas", testId: "resultados-gallery-unhas-vermelhas" },
+  { src: IMAGES.makeup1, label: "Maquiagem", testId: "resultados-gallery-maquiagem-1" },
   { src: IMAGES.hairMechas, label: "Cabelo com mechas", testId: "resultados-gallery-mechas" },
+  { src: IMAGES.makeup2, label: "Maquiagem", testId: "resultados-gallery-maquiagem-2" },
   { src: IMAGES.hairBlondeWaves, label: "Cabelo loiro com ondas", testId: "resultados-gallery-loiro-ondas" },
   { src: IMAGES.nailsLight, label: "Unhas claras", testId: "resultados-gallery-unhas-claras" },
+  { src: IMAGES.makeup3, label: "Maquiagem", testId: "resultados-gallery-maquiagem-3" },
   { src: IMAGES.hairBlonde, label: "Resultado loiro", testId: "resultados-gallery-loiro" },
+  { src: IMAGES.makeup4, label: "Maquiagem", testId: "resultados-gallery-maquiagem-4" },
 ];
 
 export const Results = () => (

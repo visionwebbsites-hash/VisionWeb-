@@ -10,7 +10,7 @@ export const Space = () => (
   >
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <SectionHeading
-        chapter="05"
+        chapter="04"
         eyebrow="Nosso Espaço"
         title="UM AMBIENTE PENSADO PARA VOCÊ"
         sub="Um ambiente acolhedor, elegante e preparado para tornar seu momento de cuidado ainda mais especial."

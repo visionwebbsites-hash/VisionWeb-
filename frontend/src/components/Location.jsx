@@ -11,7 +11,7 @@ export const Location = () => (
   >
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <SectionHeading
-        chapter="08"
+        chapter="07"
         eyebrow="Localização & Contato"
         title="VENHA NOS VISITAR"
         testId="localizacao-heading"

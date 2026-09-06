@@ -54,7 +54,7 @@ export const Testimonials = () => {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          chapter="07"
+          chapter="06"
           eyebrow="Avaliações"
           title="O QUE NOSSAS CLIENTES DIZEM"
           sub="A experiência de quem já viveu o cuidado e o atendimento da Senhorita M."

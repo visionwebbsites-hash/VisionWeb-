@@ -98,6 +98,12 @@ export const SERVICES = [
     items: ["Design", "Henna"],
   },
   {
+    id: "maquiagem",
+    title: "Maquiagem",
+    tagline: "Uma produção à altura dos seus momentos especiais",
+    items: ["Maquiagem"],
+  },
+  {
     id: "estetica-corporal",
     title: "Estética Corporal",
     tagline: "Bem-estar e cuidado para o seu corpo",
