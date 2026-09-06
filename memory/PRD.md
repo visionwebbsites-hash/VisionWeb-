@@ -42,6 +42,9 @@ Header com logo + nav + CTA; Hero "BELEZA QUE VALORIZA A SUA ESSÊNCIA"; barra d
 ## Atualizações (05/09/2026 — quarto ciclo)
 - Google Tag Manager instalado globalmente em `/app/frontend/public/index.html`: snippet principal no topo do `<head>` (após charset) e snippet `<noscript>` imediatamente após `<body>`. Container ID: GTM-TG65Q8W9. Verificado: `dataLayer` ativo e `gtm.js?id=GTM-TG65Q8W9` carregando; site renderiza normalmente.
 
+## Atualizações (06/09/2026 — diagnóstico do Preview)
+- Cliente relatou Preview travado em "carregando/salvando". Diagnóstico: nenhum erro de JS, build ou rota; GTM íntegro e não-bloqueante (async). Causa real: compilação a frio do dev server webpack na primeira visita após restart (feito para aplicar o GTM em public/index.html). Correção: restart do frontend + aquecimento da compilação. Preview responde em ~0,1-0,2s. GTM-TG65Q8W9 mantido.
+
 ## Backlog priorizado
 - P0: Receber a 6ª foto (segundo resultado de cabelo) que não chegou no último envio.
 - P1: Pixel Meta/Google Ads + GA4 para campanhas de tráfego pago.
