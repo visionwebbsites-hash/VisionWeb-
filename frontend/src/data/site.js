@@ -104,7 +104,7 @@ export const SERVICES = [
     id: "maquiagem",
     title: "Maquiagem",
     tagline: "Uma produção à altura dos seus momentos especiais",
-    items: ["Maquiagem"],
+    items: ["Maquiagem social", "Maquiagem para eventos", "Maquiagem para produção fotográfica"],
   },
   {
     id: "estetica-corporal",

@@ -76,6 +76,9 @@ Header com logo + nav + CTA; Hero "BELEZA QUE VALORIZA A SUA ESSÊNCIA"; barra d
 ## Atualizações (08/09/2026 — décimo segundo ciclo)
 - Serviços: categoria "Nail Designer" renomeada para "Manicure" (somente o título do card; itens, ícone e layout intactos). Obs.: o letreiro animado (marquee) ainda exibe "Nail Designer" — cliente não pediu alteração ali.
 
+## Atualizações (08/09/2026 — décimo terceiro ciclo)
+- Serviços: card Maquiagem passou a listar 3 itens — Maquiagem social, Maquiagem para eventos, Maquiagem para produção fotográfica.
+
 ## Backlog priorizado
 - P1: Pixel Meta/Google Ads + GA4 (GTM já instalado — falta configurar tags no painel).
 - P2: Domínio próprio + build de produção.
