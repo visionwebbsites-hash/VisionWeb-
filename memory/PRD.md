@@ -63,6 +63,10 @@ Header com logo + nav + CTA; Hero "BELEZA QUE VALORIZA A SUA ESSÊNCIA"; barra d
 - Serviços: "Corte de cabelo" adicionado à categoria Cabeleireira (5º item, mesmo padrão visual).
 - Hero: selo de texto "Senhorita M / Florianópolis" substituído pela mesma logo circular (logo.jpg) já usada no rodapé — mesma posição, tamanho e animação de entrada.
 
+## Atualizações (08/09/2026 — nono ciclo)
+- Hero: composição de fotos substituída pelo novo banner oficial da cliente (hero-banner.jpg, 1137x1383, sem recorte) com texto "Agende seu horário!" incorporado; adicionada área clicável funcional sobre o botão da imagem levando ao mesmo wa.me/5548992118889 (data-testid hero-banner-cta-whatsapp). Selo de texto removido do hero; logo do rodapé mantida. Fotos antigas do hero seguem em uso em outras seções (Nosso Espaço e galeria).
+- Confirmado: "Corte de cabelo" presente na categoria Cabeleireira.
+
 ## Backlog priorizado
 - P1: Pixel Meta/Google Ads + GA4 (GTM já instalado — falta configurar tags no painel).
 - P2: Domínio próprio + build de produção.

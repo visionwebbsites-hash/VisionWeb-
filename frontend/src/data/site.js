@@ -60,6 +60,7 @@ export const IMAGES = {
   browsAfter: "/images/sobrancelhas-depois.jpg",
   hairExtra1: "/images/cabelo-extra-1.jpg",
   facade: "/images/fachada.jpg",
+  heroBanner: "/images/hero-banner.jpg",
 };
 
 export const SERVICES = [

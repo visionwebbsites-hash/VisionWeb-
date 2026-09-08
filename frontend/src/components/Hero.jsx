@@ -21,7 +21,6 @@ const MaskedLine = ({ children, delay }) => (
 export const Hero = () => {
   const { scrollY } = useScroll();
   const yMain = useTransform(scrollY, [0, 700], [0, 70]);
-  const yCard = useTransform(scrollY, [0, 700], [0, -55]);
 
   return (
     <section
@@ -106,46 +105,23 @@ export const Hero = () => {
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, delay: 0.4, ease: EASE }}
-            className="relative z-10 ml-auto w-[82%] overflow-hidden rounded-[1.6rem] border border-[#ECCEC8] shadow-[0_30px_60px_-25px_rgba(44,24,16,0.28)] sm:w-[74%]"
+            className="relative z-10 mx-auto w-full max-w-[440px] overflow-hidden rounded-[1.6rem] border border-[#ECCEC8] shadow-[0_30px_60px_-25px_rgba(44,24,16,0.28)] lg:ml-auto lg:mr-0"
           >
             <img
-              src={IMAGES.salonFlowers}
-              alt="Interior do Senhorita M Espaço de Beleza com flores, espelhos e cadeiras"
-              className="aspect-[3/4] w-full object-cover"
+              src={IMAGES.heroBanner}
+              alt="Senhorita M Espaço de Beleza — Mais brilho, beleza e confiança. Resultado feito no Senhorita M."
+              className="block h-auto w-full"
               loading="eager"
               decoding="async"
               data-testid="hero-main-image"
             />
-          </motion.div>
-          <motion.div
-            style={{ y: yCard }}
-            initial={{ opacity: 0, y: 40, rotate: -4 }}
-            animate={{ opacity: 1, y: 0, rotate: -4 }}
-            transition={{ duration: 1.1, delay: 0.7, ease: EASE }}
-            className="absolute -bottom-8 left-0 z-20 w-[46%] overflow-hidden rounded-2xl border-4 border-[#FDFBF7] shadow-[0_24px_45px_-18px_rgba(44,24,16,0.35)] sm:w-[40%]"
-          >
-            <img
-              src={IMAGES.hairWaves}
-              alt="Resultado de cabelo longo com ondas feito no Senhorita M"
-              className="aspect-[3/4] w-full object-cover"
-              loading="lazy"
-              decoding="async"
-              data-testid="hero-secondary-image"
-            />
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9, delay: 1.05, ease: EASE }}
-            className="absolute -right-2 top-6 z-20 sm:-right-4"
-            data-testid="hero-seal"
-          >
-            <img
-              src={IMAGES.logo}
-              alt="Logo Senhorita M Espaço de Beleza"
-              className="h-24 w-24 rounded-full border-2 border-[#FDFBF7] object-cover shadow-xl sm:h-28 sm:w-28"
-              loading="eager"
-              decoding="async"
+            <a
+              data-testid="hero-banner-cta-whatsapp"
+              href={WA_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Agende seu horário pelo WhatsApp"
+              className="absolute bottom-[1.5%] left-1/2 block h-[8.5%] w-[40%] -translate-x-1/2 cursor-pointer rounded-full transition-colors duration-300 hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#B05B4B]"
             />
           </motion.div>
         </div>
