@@ -61,6 +61,8 @@ export const IMAGES = {
   hairExtra1: "/images/cabelo-extra-1.jpg",
   facade: "/images/fachada.jpg",
   heroBanner: "/images/hero-banner.jpg",
+  salonMirrors: "/images/salao-espelhos.jpg",
+  hairstyle: "/images/penteado.jpg",
 };
 
 export const SERVICES = [

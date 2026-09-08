@@ -70,6 +70,9 @@ Header com logo + nav + CTA; Hero "BELEZA QUE VALORIZA A SUA ESSÊNCIA"; barra d
 ## Atualizações (08/09/2026 — décimo ciclo)
 - Seção Sobre: removida a imagem editorial ("Você não quer cabelo liso..." — editorial-escova.jpg) junto com o selo de logo sobre ela, a pedido do cliente. A seção ficou somente com o texto aprovado + CTA, em coluna única centralizada. Arquivo da imagem permanece em /public/images (não referenciado).
 
+## Atualizações (08/09/2026 — décimo primeiro ciclo)
+- Seção Sobre: adicionadas 2 fotos reais enviadas pelo cliente ao lado do texto (salao-espelhos.jpg = interior com espelhos arqueados; penteado.jpg = penteado com ondas), em composição dupla com desnível editorial. Texto aprovado e CTA mantidos intactos.
+
 ## Backlog priorizado
 - P1: Pixel Meta/Google Ads + GA4 (GTM já instalado — falta configurar tags no painel).
 - P2: Domínio próprio + build de produção.
