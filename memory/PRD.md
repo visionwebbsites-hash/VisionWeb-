@@ -73,6 +73,9 @@ Header com logo + nav + CTA; Hero "BELEZA QUE VALORIZA A SUA ESSÊNCIA"; barra d
 ## Atualizações (08/09/2026 — décimo primeiro ciclo)
 - Seção Sobre: adicionadas 2 fotos reais enviadas pelo cliente ao lado do texto (salao-espelhos.jpg = interior com espelhos arqueados; penteado.jpg = penteado com ondas), em composição dupla com desnível editorial. Texto aprovado e CTA mantidos intactos.
 
+## Atualizações (08/09/2026 — décimo segundo ciclo)
+- Serviços: categoria "Nail Designer" renomeada para "Manicure" (somente o título do card; itens, ícone e layout intactos). Obs.: o letreiro animado (marquee) ainda exibe "Nail Designer" — cliente não pediu alteração ali.
+
 ## Backlog priorizado
 - P1: Pixel Meta/Google Ads + GA4 (GTM já instalado — falta configurar tags no painel).
 - P2: Domínio próprio + build de produção.

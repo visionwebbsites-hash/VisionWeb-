@@ -68,7 +68,7 @@ export const IMAGES = {
 export const SERVICES = [
   {
     id: "nail-designer",
-    title: "Nail Designer",
+    title: "Manicure",
     tagline: "Unhas impecáveis em cada detalhe",
     items: [
       "Alongamento em fibra de vidro",
