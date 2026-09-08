@@ -56,6 +56,9 @@ Header com logo + nav + CTA; Hero "BELEZA QUE VALORIZA A SUA ESSÊNCIA"; barra d
 - Avaliações: removidas Vanuza Gomes e Scheila Maria Fernandes de Oliveira; adicionadas Daiane Oderdenge Sodré e Livian Gaia (textos exatos fornecidos). Helena e Pollyana mantidas.
 - Antes & Depois: 8 novas fotos reais adicionadas como novos pares no carrossel — Cabelo ganhou "Mechas e Iluminação" (mechas-iluminacao-antes/depois) e "Transformação de Cabelos" (transformacao-antes/depois); Sobrancelhas ganhou "Design de Sobrancelhas" (design-sobrancelhas-antes/depois); Manicure ganhou "Manicure" (manicure-antes/depois). Cada par novo exibe legenda com o nome do procedimento. Pares antigos mantidos; setas e dots ativos nas 3 abas.
 
+## Atualizações (08/09/2026 — sétimo ciclo)
+- Antes & Depois: 6 novas fotos reais (2 lotes) adicionadas como 3 novos pares, sem remover nada — Cabelo: par "ondulado" (cabelo-ondulado-antes/depois) e par "corte bob" (corte-bob-antes/depois), totalizando 5 pares; Manicure: novo par (manicure-2-antes/depois), totalizando 3 pares. Sobrancelhas mantida com 2 pares. Sem legendas de procedimento nos pares novos (cliente não forneceu nomes).
+
 ## Backlog priorizado
 - P1: Pixel Meta/Google Ads + GA4 (GTM já instalado — falta configurar tags no painel).
 - P2: Domínio próprio + build de produção.

@@ -135,6 +135,14 @@ export const BEFORE_AFTER = [
         after: "/images/transformacao-depois.jpg",
         label: "Transformação de Cabelos",
       },
+      {
+        before: "/images/cabelo-ondulado-antes.jpg",
+        after: "/images/cabelo-ondulado-depois.jpg",
+      },
+      {
+        before: "/images/corte-bob-antes.jpg",
+        after: "/images/corte-bob-depois.jpg",
+      },
     ],
     extras: [{ src: "/images/cabelo-extra-1.jpg", label: "Resultado de cabelo" }],
   },
@@ -147,6 +155,10 @@ export const BEFORE_AFTER = [
         before: "/images/manicure-antes.jpg",
         after: "/images/manicure-depois.jpg",
         label: "Manicure",
+      },
+      {
+        before: "/images/manicure-2-antes.jpg",
+        after: "/images/manicure-2-depois.jpg",
       },
     ],
   },
