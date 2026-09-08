@@ -59,6 +59,10 @@ Header com logo + nav + CTA; Hero "BELEZA QUE VALORIZA A SUA ESSÊNCIA"; barra d
 ## Atualizações (08/09/2026 — sétimo ciclo)
 - Antes & Depois: 6 novas fotos reais (2 lotes) adicionadas como 3 novos pares, sem remover nada — Cabelo: par "ondulado" (cabelo-ondulado-antes/depois) e par "corte bob" (corte-bob-antes/depois), totalizando 5 pares; Manicure: novo par (manicure-2-antes/depois), totalizando 3 pares. Sobrancelhas mantida com 2 pares. Sem legendas de procedimento nos pares novos (cliente não forneceu nomes).
 
+## Atualizações (08/09/2026 — oitavo ciclo)
+- Serviços: "Corte de cabelo" adicionado à categoria Cabeleireira (5º item, mesmo padrão visual).
+- Hero: selo de texto "Senhorita M / Florianópolis" substituído pela mesma logo circular (logo.jpg) já usada no rodapé — mesma posição, tamanho e animação de entrada.
+
 ## Backlog priorizado
 - P1: Pixel Meta/Google Ads + GA4 (GTM já instalado — falta configurar tags no painel).
 - P2: Domínio próprio + build de produção.

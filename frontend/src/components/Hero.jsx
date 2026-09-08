@@ -137,18 +137,16 @@ export const Hero = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.9, delay: 1.05, ease: EASE }}
-            className="absolute -right-2 top-6 z-20 flex h-24 w-24 flex-col items-center justify-center rounded-full bg-[#2C1810] text-center shadow-xl sm:-right-4 sm:h-28 sm:w-28"
+            className="absolute -right-2 top-6 z-20 sm:-right-4"
             data-testid="hero-seal"
           >
-            <span className="font-serif text-lg italic leading-none text-[#F0D9D2]">
-              Senhorita
-            </span>
-            <span className="font-serif text-3xl font-semibold leading-none text-[#C06C5C]">
-              M
-            </span>
-            <span className="mt-1 text-[7px] font-semibold uppercase tracking-[0.28em] text-[#F0D9D2]/80">
-              Florianópolis
-            </span>
+            <img
+              src={IMAGES.logo}
+              alt="Logo Senhorita M Espaço de Beleza"
+              className="h-24 w-24 rounded-full border-2 border-[#FDFBF7] object-cover shadow-xl sm:h-28 sm:w-28"
+              loading="eager"
+              decoding="async"
+            />
           </motion.div>
         </div>
       </div>

@@ -83,7 +83,7 @@ export const SERVICES = [
     id: "cabeleireira",
     title: "Cabeleireira",
     tagline: "Cabelos que valorizam a sua essência",
-    items: ["Mechas", "Coloração", "Escova", "Penteados"],
+    items: ["Mechas", "Coloração", "Escova", "Penteados", "Corte de cabelo"],
   },
   {
     id: "cilios",
