@@ -123,7 +123,19 @@ export const BEFORE_AFTER = [
   {
     id: "cabelo",
     label: "Cabelo",
-    pairs: [{ before: "/images/antes.jpg", after: "/images/depois.jpg" }],
+    pairs: [
+      { before: "/images/antes.jpg", after: "/images/depois.jpg" },
+      {
+        before: "/images/mechas-iluminacao-antes.jpg",
+        after: "/images/mechas-iluminacao-depois.jpg",
+        label: "Mechas e Iluminação",
+      },
+      {
+        before: "/images/transformacao-antes.jpg",
+        after: "/images/transformacao-depois.jpg",
+        label: "Transformação de Cabelos",
+      },
+    ],
     extras: [{ src: "/images/cabelo-extra-1.jpg", label: "Resultado de cabelo" }],
   },
   {
@@ -131,6 +143,11 @@ export const BEFORE_AFTER = [
     label: "Manicure",
     pairs: [
       { before: "/images/unhas-antes.jpg", after: "/images/unhas-depois.jpg" },
+      {
+        before: "/images/manicure-antes.jpg",
+        after: "/images/manicure-depois.jpg",
+        label: "Manicure",
+      },
     ],
   },
   {
@@ -140,6 +157,11 @@ export const BEFORE_AFTER = [
       {
         before: "/images/sobrancelhas-antes.jpg",
         after: "/images/sobrancelhas-depois.jpg",
+      },
+      {
+        before: "/images/design-sobrancelhas-antes.jpg",
+        after: "/images/design-sobrancelhas-depois.jpg",
+        label: "Design de Sobrancelhas",
       },
     ],
   },
@@ -155,12 +177,12 @@ export const REVIEWS = [
     text: "Maravilhosa! Salão com ambiente agradável e confortável e serviço muito bem feito! Foi minha primeira vez mas já conquistaram uma cliente.",
   },
   {
-    name: "Vanuza Gomes",
-    text: "Un lugar super elegante e aconchegante para quem realmente procura um atendimento tive uma ótima experiência com a nail designer flor com a esmaltação em gel que sinceramente ela arrasa no trabalho gratidão equipe senhoritas M desde a parte de agendamento até a parte de atendimento obrigada a todas lindas! Logo estarei de volta 😊",
+    name: "Daiane Oderdenge Sodré",
+    text: "Hoje pintei o cabelo e manicura e estou me sentindo uma Diva...amei o resultado...",
   },
   {
-    name: "Scheila Maria Fernandes de Oliveira",
-    text: "Primeira cliente do salao, qdo da abertura. Só elogios à equipe. Neia, proprietária, fina, chique, muito educada e atenciosa. Marcia e Ana Claudia ambas muito atenciosas, simpaticas, sempre preocupadas com o bem estar dos clientes. Super recomendo o salão. Venha e tenha a mesma experiência que eu tenho toda semana.",
+    name: "Livian Gaia",
+    text: "Amei o resultado, meu cabelo ficou com um brilho surreal. Minha unha ficou linda",
   },
 ];
 

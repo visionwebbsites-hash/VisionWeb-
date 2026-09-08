@@ -40,6 +40,11 @@ const PairSlide = ({ pair, category, testId }) => (
     <span className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[#ECCEC8] bg-[#FDFBF7] text-[#B05B4B] shadow-lg">
       <MoveRight size={18} strokeWidth={1.8} />
     </span>
+    {pair?.label && (
+      <p className="col-span-2 mt-1 text-center font-serif text-lg italic text-[#B05B4B]">
+        {pair.label}
+      </p>
+    )}
   </div>
 );
 
