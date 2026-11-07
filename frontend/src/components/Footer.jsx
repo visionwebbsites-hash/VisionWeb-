@@ -1,4 +1,5 @@
-import { Instagram } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Instagram, Phone } from "lucide-react";
 import { ADDRESS, IG_HANDLE, IG_LINK, IMAGES, NAV_LINKS, WA_DISPLAY, WA_LINK, scrollToSection } from "../data/site";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 
@@ -53,6 +54,21 @@ export const Footer = () => (
                 </a>
               </li>
             ))}
+            <li>
+              <Link data-testid="footer-link-cabelos" to="/cabelos" className="text-sm text-[#D8BFB6] transition-colors hover:text-[#FDFBF7]">
+                Cabelos
+              </Link>
+            </li>
+            <li>
+              <Link data-testid="footer-link-manicure" to="/manicure" className="text-sm text-[#D8BFB6] transition-colors hover:text-[#FDFBF7]">
+                Manicure
+              </Link>
+            </li>
+            <li>
+              <Link data-testid="footer-link-estetica" to="/estetica" className="text-sm text-[#D8BFB6] transition-colors hover:text-[#FDFBF7]">
+                Estética Corporal
+              </Link>
+            </li>
           </ul>
         </nav>
 
@@ -80,6 +96,14 @@ export const Footer = () => (
             >
               <Instagram size={15} className="text-[#C06C5C]" strokeWidth={1.8} />
               {IG_HANDLE}
+            </a>
+            <a
+              data-testid="footer-phone-link"
+              href="tel:+5548992118889"
+              className="flex items-center gap-3 text-sm transition-colors hover:text-[#FDFBF7]"
+            >
+              <Phone size={15} className="text-[#C06C5C]" strokeWidth={1.8} />
+              {WA_DISPLAY}
             </a>
           </div>
         </div>

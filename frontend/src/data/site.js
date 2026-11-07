@@ -25,8 +25,7 @@ export const NAV_LINKS = [
   { id: "contato", label: "Contato", testId: "nav-link-contato" },
 ];
 
-export const scrollToSection = (id) => {
-  const el = document.getElementById(id);
+export const scrollToSection = (id) => {  const el = document.getElementById(id);
   if (!el) return;
   if (window.__lenis) {
     window.__lenis.scrollTo(el, { offset: -68, duration: 1.4 });
@@ -198,6 +197,48 @@ export const REVIEWS = [
   {
     name: "Livian Gaia",
     text: "Amei o resultado, meu cabelo ficou com um brilho surreal. Minha unha ficou linda",
+  },
+];
+
+export const waMsg = (text) =>
+  `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
+
+export const ESTETICA_PROCEDURES = [
+  {
+    key: "drenagem-linfatica",
+    name: "Drenagem Linfática",
+    desc: "Técnica de massagem suave e ritmada que estimula a circulação linfática do corpo.",
+    benefit: "Sensação de leveza e bem-estar",
+  },
+  {
+    key: "massagem-modeladora",
+    name: "Massagem Modeladora",
+    desc: "Massagem com movimentos firmes e envolventes, dedicada ao cuidado corporal.",
+    benefit: "Momento de cuidado e revitalização",
+  },
+  {
+    key: "massagem-relaxante",
+    name: "Massagem Relaxante",
+    desc: "Movimentos leves e contínuos que aliviam as tensões do dia a dia.",
+    benefit: "Descanso profundo e relaxamento",
+  },
+  {
+    key: "massagem-terapeutica",
+    name: "Massagem Terapêutica",
+    desc: "Massagem focada em pontos de tensão muscular, com toque acolhedor.",
+    benefit: "Alívio e conforto para o corpo",
+  },
+  {
+    key: "shiatsu",
+    name: "Shiatsu",
+    desc: "Técnica de origem japonesa que utiliza pressão suave dos dedos em pontos específicos.",
+    benefit: "Equilíbrio e relaxamento",
+  },
+  {
+    key: "ventosaterapia",
+    name: "Ventosaterapia",
+    desc: "Terapia tradicional com ventosas que criam uma sucção suave sobre a pele.",
+    benefit: "Experiência de bem-estar e relaxamento",
   },
 ];
 

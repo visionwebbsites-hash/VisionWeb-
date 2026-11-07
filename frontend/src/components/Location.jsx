@@ -1,4 +1,4 @@
-import { Instagram, MapPin } from "lucide-react";
+import { Instagram, MapPin, Phone } from "lucide-react";
 import { ADDRESS, IG_HANDLE, IG_LINK, IMAGES, MAPS_EMBED, MAPS_LINK, WA_DISPLAY, WA_LINK } from "../data/site";
 import { CtaButton, Reveal, SectionHeading } from "./Reveal";
 import { WhatsAppIcon } from "./WhatsAppIcon";
@@ -82,6 +82,16 @@ export const Location = () => (
                     <Instagram size={15} strokeWidth={1.8} />
                   </span>
                   Instagram:{" "}{IG_HANDLE}
+                </a>
+                <a
+                  data-testid="localizacao-phone-link"
+                  href="tel:+5548992118889"
+                  className="flex items-center gap-3 text-sm font-medium text-[#4A3B34] transition-colors hover:text-[#B05B4B]"
+                >
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#B05B4B]">
+                    <Phone size={15} strokeWidth={1.8} />
+                  </span>
+                  Ligar:{" "}{WA_DISPLAY}
                 </a>
               </div>
             </div>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { IMAGES, NAV_LINKS, WA_LINK, scrollToSection } from "../data/site";
@@ -6,11 +7,17 @@ import { WhatsAppIcon } from "./WhatsAppIcon";
 
 export const Header = () => {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const go = (e, id) => {
     e.preventDefault();
     setOpen(false);
-    scrollToSection(id);
+    if (location.pathname === "/") {
+      scrollToSection(id);
+    } else {
+      navigate(`/#${id}`);
+    }
   };
 
   return (
