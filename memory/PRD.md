@@ -87,6 +87,9 @@ Header com logo + nav + CTA; Hero "BELEZA QUE VALORIZA A SUA ESSÊNCIA"; barra d
 - GTM-TG65Q8W9 preservado e verificado ativo. Home original intacta.
 - Telefone oficial verificado: (48) 99211-8889 em texto em Localização e Rodapé, com link tel:+5548992118889. Consistente em todas as páginas.
 
+## Atualizações (07/11/2026 — complemento)
+- Recebidas as 3 imagens que faltavam: 6ª foto de Cabelos (loiro perfil), 6ª de Manicure (unhas rosé cromadas) e a ilustrativa de Shiatsu (Estética). Enviadas via API do painel admin; todas as galerias agora têm 6 itens e os 6 cards de Estética têm imagem (sem placeholders).
+
 ## Backlog priorizado
 - P1: Pixel Meta/Google Ads + GA4 (GTM já instalado — falta configurar tags no painel).
 - P2: Domínio próprio + build de produção.
