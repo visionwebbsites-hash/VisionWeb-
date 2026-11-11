@@ -273,6 +273,27 @@ function BannersTab() {
     }
   };
 
+  const edit = async (e, banner) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    setBusy(true);
+    setMsg("");
+    try {
+      await api.put(`/admin/banners/${banner.id}`, {
+        title: form.elements.title.value,
+        description: form.elements.description.value,
+        cta_label: form.elements.cta_label.value,
+        link: form.elements.link.value,
+      });
+      setMsg("Banner atualizado.");
+      load();
+    } catch (err) {
+      setMsg(formatApiError(err.response?.data?.detail) || "Não foi possível atualizar o banner.");
+    } finally {
+      setBusy(false);
+    }
+  };
+
   const toggle = async (b) => {
     await api.put(`/admin/banners/${b.id}`, { active: !b.active }).catch(() => {});
     load();
@@ -345,6 +366,23 @@ function BannersTab() {
             <button data-testid={`admin-banner-del-${b.id}`} onClick={() => del(b.id)} aria-label="Excluir banner" className="rounded-full border border-[#ECCEC8] p-2 text-[#984A3B] hover:bg-[#FAF0EE]">
               <Trash2 size={14} />
             </button>
+            <details className="w-full border-t border-[#ECCEC8] pt-3">
+              <summary className="cursor-pointer text-xs font-semibold text-[#7F3B2E]">Editar banner</summary>
+              <form onSubmit={(e) => edit(e, b)} className="mt-3 grid gap-3 sm:grid-cols-2">
+                {[
+                  ["title", "Título do banner", b.title],
+                  ["description", "Descrição do banner", b.description],
+                  ["cta_label", "Texto do botão do banner", b.cta_label],
+                  ["link", "Link do botão do banner", b.link],
+                ].map(([name, label, value]) => (
+                  <label key={name} className="text-xs text-[#7F3B2E]">
+                    {label}
+                    <input name={name} defaultValue={value || ""} required={name === "title"} className="mt-1 w-full rounded-xl border border-[#ECCEC8] bg-[#FDFBF7] px-3 py-2 text-sm" />
+                  </label>
+                ))}
+                <button disabled={busy} className="rounded-full bg-[#B05B4B] px-5 py-2 text-xs font-semibold text-white disabled:opacity-50">Salvar alterações</button>
+              </form>
+            </details>
           </div>
         ))}
         {items.length === 0 && (
