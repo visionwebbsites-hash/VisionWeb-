@@ -33,6 +33,10 @@ export default function CategoryPage({ category, serviceId, path, title, seoTitl
   const [items, setItems] = useState([]);
   const [videos, setVideos] = useState([]);
   const [lightbox, setLightbox] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
+  const [reloadCount, setReloadCount] = useState(0);
+
 
   const service = SERVICES.find((s) => s.id === serviceId);
   const bookLink = waMsg(
@@ -41,9 +45,36 @@ export default function CategoryPage({ category, serviceId, path, title, seoTitl
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    api.get(`/media?category=${category}`).then((res) => setItems(res.data.items || [])).catch(() => {});
-    api.get(`/videos?category=${category}`).then((res) => setVideos(res.data.items || [])).catch(() => {});
-  }, [category]);
+    const controller = new AbortController();
+    let disposed = false;
+    let retryTimer;
+    setItems([]);
+    setLoading(true);
+    setLoadError(false);
+    const load = async (attempt = 0) => {
+      try {
+        const res = await api.get(`/media?category=${category}`, { signal: controller.signal, timeout: 35000 });
+        if (disposed) return;
+        setItems(res.data.items || []);
+        setLoading(false);
+      } catch {
+        if (disposed) return;
+        if (attempt < 2) {
+          retryTimer = setTimeout(() => load(attempt + 1), 2000);
+        } else {
+          setLoadError(true);
+          setLoading(false);
+        }
+      }
+    };
+    load();
+    api.get(`/videos?category=${category}`, { signal: controller.signal }).then((res) => { if (!disposed) setVideos(res.data.items || []); }).catch(() => {});
+    return () => {
+      disposed = true;
+      clearTimeout(retryTimer);
+      controller.abort();
+    };
+  }, [category, reloadCount]);
 
   return (
     <div className="bg-[#FDFBF7] text-[#2C1810]">
@@ -122,6 +153,14 @@ export default function CategoryPage({ category, serviceId, path, title, seoTitl
                 Trabalhos realizados
               </h2>
             </Reveal>
+            {loading && <p role="status" className="mt-8 text-center text-sm text-[#827168]">Carregando fotos. Isso pode levar alguns instantes...</p>}
+            {loadError && (
+              <div role="alert" className="mt-8 text-center text-sm text-[#7F3B2E]">
+                <p>Não foi possível carregar as fotos agora.</p>
+                <button type="button" onClick={() => setReloadCount((value) => value + 1)} className="mt-3 rounded-full border border-[#ECCEC8] bg-white px-5 py-2 font-semibold">Tentar novamente</button>
+              </div>
+            )}
+            {!loading && !loadError && items.length === 0 && <p className="mt-8 text-center text-sm text-[#827168]">Nenhuma foto disponível nesta galeria.</p>}
             <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3">
               {items.map((m, i) => (
                 <Reveal key={m.id} delay={i * 0.05}>
