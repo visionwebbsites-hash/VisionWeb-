@@ -103,7 +103,8 @@ async def root():
 
 @api_router.get("/health")
 async def health():
-    return {"status": "ok"}
+    await db.command("ping")
+    return {"status": "ok", "database": "ok"}
 
 @api_router.get("/testimonials")
 async def list_testimonials():
@@ -300,7 +301,7 @@ app.include_router(api_router)
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
+    allow_origins=[origin.strip().rstrip('/') for origin in os.environ.get('CORS_ORIGINS', '').split(',') if origin.strip() and origin.strip() != '*'],
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -332,32 +333,40 @@ async def startup():
                 "role": "admin",
                 "created_at": datetime.now(timezone.utc).isoformat(),
             })
-            logger.info("Admin criado: %s", email)
-    count = await db.media.count_documents({})
-    materiais = Path("/app/materiais")
-    if count == 0 and materiais.exists():
-        order_map = {"cabelos": 0, "manicure": 0, "estetica": 0}
-        seeds = []
-        for f in sorted((materiais / "cabelos").glob("*.png")):
-            seeds.append((f, "cabelos", None))
-        for f in sorted((materiais / "manicure").glob("*.png")):
-            seeds.append((f, "manicure", None))
-        for f in sorted((materiais / "estetica").glob("*.png")):
-            seeds.append((f, "estetica", ESTETICA_SEED.get(f.name)))
-        for f, cat, proc in seeds:
-            raw = optimize_image(f.read_bytes())
-            await db.media.insert_one({
-                "id": str(uuid.uuid4()),
-                "category": cat,
-                "procedure": proc,
-                "filename": f.name,
-                "content_type": "image/jpeg",
-                "data": base64.b64encode(raw).decode(),
-                "order": order_map[cat],
-                "created_at": datetime.now(timezone.utc).isoformat(),
-            })
-            order_map[cat] += 1
-        logger.info("Mídias iniciais semeadas: %s", order_map)
+            logger.info("Administrador inicial criado com senha protegida")
+    materiais = Path(os.environ.get("MATERIAIS_DIR", str(Path(__file__).resolve().parent.parent / "materiais")))
+    if not materiais.is_dir():
+        logger.warning("Diretorio de materiais ausente; importacao inicial adiada")
+        return
+    imported = {"cabelos": 0, "manicure": 0, "estetica": 0}
+    for category in imported:
+        last = await db.media.find_one({"category": category}, sort=[("order", -1)])
+        next_order = last.get("order", -1) + 1 if last else 0
+        for file in sorted((materiais / category).glob("*.png")):
+            seed_key = f"materials-v1:{category}:{file.name}"
+            # Keep a separate receipt so deleted seed photos stay deleted on restart.
+            if await db.seed_imports.find_one({"_id": seed_key}):
+                continue
+            existing = await db.media.find_one({"category": category, "filename": file.name})
+            if existing is None:
+                raw = optimize_image(file.read_bytes())
+                result = await db.media.update_one({"_id": seed_key}, {"$setOnInsert": {
+                    "id": str(uuid.uuid5(uuid.NAMESPACE_URL, seed_key)),
+                    "category": category,
+                    "procedure": ESTETICA_SEED.get(file.name) if category == "estetica" else None,
+                    "filename": file.name,
+                    "content_type": "image/jpeg",
+                    "data": base64.b64encode(raw).decode(),
+                    "order": next_order,
+                    "created_at": datetime.now(timezone.utc).isoformat(),
+                }}, upsert=True)
+                if result.upserted_id is not None:
+                    imported[category] += 1
+                    next_order += 1
+            await db.seed_imports.update_one({"_id": seed_key}, {"$setOnInsert": {
+                "imported_at": datetime.now(timezone.utc).isoformat(),
+            }}, upsert=True)
+    logger.info("Importacao inicial de midias: %s", imported)
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
