@@ -13,6 +13,10 @@ const ICONS = {
 };
 
 const PAGE_LINKS = {
+  sobrancelhas: { path: "/sobrancelhas", label: "Ver galeria de sobrancelhas" },
+  maquiagem: { path: "/maquiagem", label: "Ver galeria de maquiagem" },
+  cilios: { path: "/cilios", label: "Ver galeria de cílios" },
+
   "nail-designer": { path: "/manicure", label: "Ver galeria de manicure" },
   cabeleireira: { path: "/cabelos", label: "Ver galeria de cabelos" },
   "estetica-corporal": { path: "/estetica", label: "Ver estética corporal" },
