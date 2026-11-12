@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Flower2, MapPin } from "lucide-react";
 import { api, API } from "../lib/api";
-import { ADDRESS, ESTETICA_PROCEDURES, waMsg } from "../data/site";
+import { ADDRESS, ESTETICA_PROCEDURES, trackWhatsAppConversion, waLinkForCategory, waMsg } from "../data/site";
 import { Seo } from "../components/Seo";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
@@ -43,6 +43,11 @@ export default function EsteticaPage() {
   }, [reloadCount]);
 
   const imgFor = (key) => items.find((m) => m.procedure === key);
+  const featuredImage = items.find((item) => item.featured);
+  const highlightImage = featuredImage?.url
+    ? `${BASE}${featuredImage.url}`
+    : "/images/destaque-estetica.webp";
+  const bookingLink = waLinkForCategory("estetica");
 
   return (
     <div className="bg-[#FDFBF7] text-[#2C1810]">
@@ -60,7 +65,8 @@ export default function EsteticaPage() {
               "radial-gradient(circle at 50% 0%, rgba(192,108,92,0.13) 0%, rgba(253,251,247,0) 68%)",
           }}
         >
-          <div className="mx-auto max-w-3xl px-4 pb-16 pt-14 text-center sm:px-6 lg:pt-20">
+          <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 pb-16 pt-14 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14 lg:px-8 lg:pb-20 lg:pt-20">
+            <div className="text-center lg:text-left">
             <Reveal>
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#B05B4B]">
                 <Link to="/" className="transition-colors hover:text-[#7F3B2E]" data-testid="breadcrumb-home">
@@ -73,22 +79,47 @@ export default function EsteticaPage() {
             <Reveal delay={0.1}>
               <h1
                 data-testid="estetica-title"
-                className="mt-5 text-balance font-serif text-4xl font-medium leading-[1.1] tracking-tight sm:text-5xl"
+                className="mt-5 text-balance font-serif text-5xl font-medium leading-[1.1] tracking-tight sm:text-6xl lg:text-7xl"
               >
                 Estética Corporal
               </h1>
             </Reveal>
             <Reveal delay={0.18}>
-              <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-[#827168] sm:text-lg">
+              <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-[#827168] sm:text-lg lg:mx-0 lg:text-xl">
                 Cuidados corporais pensados para o seu bem-estar, em um ambiente
                 acolhedor em Santa Mônica, Florianópolis.
               </p>
             </Reveal>
             <Reveal delay={0.26}>
-              <p className="mt-8 flex items-center justify-center gap-1.5 text-xs text-[#827168]">
-                <MapPin size={12} className="text-[#B05B4B]" />
-                {ADDRESS.street} — {ADDRESS.district}, Florianópolis
-              </p>
+              <div className="mt-8 flex flex-col items-center gap-4 lg:items-start">
+                <a
+                  data-testid="estetica-hero-cta-whatsapp"
+                  href={bookingLink}
+                  onClick={() => trackWhatsAppConversion("estetica", "hero")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2.5 rounded-full bg-[#B05B4B] px-8 py-4 text-sm font-semibold uppercase tracking-[0.1em] text-white shadow-[0_14px_30px_-10px_rgba(176,91,75,0.6)] transition-[transform,background-color] duration-300 hover:-translate-y-0.5 hover:bg-[#984A3B]"
+                >
+                  <WhatsAppIcon size={17} />
+                  Agendar pelo WhatsApp
+                </a>
+                <p className="flex items-center gap-1.5 text-xs text-[#827168]">
+                  <MapPin size={12} className="text-[#B05B4B]" />
+                  {ADDRESS.street} — {ADDRESS.district}, Florianópolis
+                </p>
+              </div>
+            </Reveal>
+            </div>
+            <Reveal delay={0.18}>
+              <div className="overflow-hidden rounded-[2rem] border border-[#ECCEC8] shadow-[0_24px_60px_-28px_rgba(44,24,16,0.35)]">
+                <img
+                  src={highlightImage}
+                  alt="Atendimento profissional de massagem e bem-estar no espaço de estética da Senhorita M"
+                  className="aspect-[16/9] w-full object-cover"
+                  fetchPriority="high"
+                  decoding="async"
+                />
+              </div>
             </Reveal>
           </div>
         </section>
@@ -136,6 +167,7 @@ export default function EsteticaPage() {
                         <a
                           data-testid={`estetica-cta-${p.key}`}
                           href={link}
+                          onClick={() => trackWhatsAppConversion("estetica", "procedure_card", p.key)}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="mt-5 inline-flex items-center justify-center gap-2 rounded-full border border-[#B05B4B]/45 px-5 py-3 text-xs font-semibold uppercase tracking-[0.12em] text-[#7F3B2E] transition-colors duration-300 hover:border-[#B05B4B] hover:bg-[#B05B4B] hover:text-white"
@@ -181,10 +213,10 @@ export default function EsteticaPage() {
           </div>
         </section>
 
-        <FinalCta />
+        <FinalCta serviceCategory="estetica" />
       </main>
       <Footer />
-      <FloatingWhatsApp />
+      <FloatingWhatsApp serviceCategory="estetica" />
     </div>
   );
 }

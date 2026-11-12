@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { MapPin } from "lucide-react";
-import { IMAGES, WA_LINK, scrollToSection } from "../data/site";
+import { IMAGES, WA_LINK, scrollToSection, trackWhatsAppConversion } from "../data/site";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 
 const EASE = [0.22, 1, 0.36, 1];
@@ -78,6 +78,7 @@ export const Hero = () => {
             <a
               data-testid="hero-primary-cta-whatsapp"
               href={WA_LINK}
+              onClick={() => trackWhatsAppConversion("home", "hero")}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2.5 rounded-full bg-[#B05B4B] px-8 py-4 text-sm font-semibold uppercase tracking-[0.1em] text-white shadow-[0_14px_30px_-10px_rgba(176,91,75,0.6)] transition-[transform,background-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:bg-[#984A3B]"
@@ -118,6 +119,7 @@ export const Hero = () => {
             <a
               data-testid="hero-banner-cta-whatsapp"
               href={WA_LINK}
+              onClick={() => trackWhatsAppConversion("home", "hero_banner")}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Agende seu horário pelo WhatsApp"

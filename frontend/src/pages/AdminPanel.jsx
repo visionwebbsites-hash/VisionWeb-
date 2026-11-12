@@ -100,6 +100,7 @@ function GalleryTab() {
   const [items, setItems] = useState([]);
   const [file, setFile] = useState(null);
   const [procedure, setProcedure] = useState(ESTETICA_PROCEDURES[0].key);
+  const [makeFeatured, setMakeFeatured] = useState(false);
   const [msg, setMsg] = useState("");
   const [busy, setBusy] = useState(false);
 
@@ -118,9 +119,11 @@ function GalleryTab() {
       const fd = new FormData();
       fd.append("file", file);
       fd.append("category", cat);
+      fd.append("featured", makeFeatured ? "true" : "false");
       if (cat === "estetica") fd.append("procedure", procedure);
       await api.post("/admin/media", fd);
       setFile(null);
+      setMakeFeatured(false);
       e.target.reset();
       setMsg("Foto enviada com sucesso.");
       load();
@@ -165,6 +168,20 @@ function GalleryTab() {
     load();
   };
 
+  const markFeatured = async (id) => {
+    setBusy(true);
+    setMsg("");
+    try {
+      await api.put(`/admin/media/${id}/feature`);
+      setMsg("Imagem de destaque atualizada.");
+      load();
+    } catch (err) {
+      setMsg(formatApiError(err.response?.data?.detail));
+    } finally {
+      setBusy(false);
+    }
+  };
+
   const usedProcedures = items.map((m) => m.procedure).filter(Boolean);
 
   return (
@@ -174,7 +191,7 @@ function GalleryTab() {
           <button
             key={c.id}
             data-testid={`admin-galeria-cat-${c.id}`}
-            onClick={() => setCat(c.id)}
+            onClick={() => { setCat(c.id); setMakeFeatured(false); }}
             className={`rounded-full px-5 py-2 text-xs font-semibold transition-colors ${
               cat === c.id ? "bg-[#2C1810] text-white" : "border border-[#ECCEC8] bg-white text-[#7F3B2E]"
             }`}
@@ -223,6 +240,16 @@ function GalleryTab() {
             </select>
           </label>
         )}
+        <label className="flex items-center gap-2 pb-2 text-xs text-[#7F3B2E]">
+          <input
+            data-testid="admin-upload-featured"
+            type="checkbox"
+            checked={makeFeatured}
+            onChange={(e) => setMakeFeatured(e.target.checked)}
+            className="accent-[#B05B4B]"
+          />
+          Usar também como destaque da página
+        </label>
         <button
           data-testid="admin-upload-submit"
           disabled={busy || !file}
@@ -243,6 +270,16 @@ function GalleryTab() {
                 data-testid={`admin-media-replace-${i}`} className="mt-1 block w-full min-w-0 text-[10px]"
                 onChange={(e) => replace(m, e.currentTarget)} />
             </label>
+            <div className="px-3 pt-3">
+              <button
+                data-testid={`admin-media-feature-${i}`}
+                onClick={() => markFeatured(m.id)}
+                disabled={busy || m.featured}
+                className={`w-full rounded-full border px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.08em] transition-colors disabled:opacity-60 ${m.featured ? "border-[#B05B4B] bg-[#B05B4B] text-white" : "border-[#ECCEC8] text-[#7F3B2E] hover:bg-[#FAF0EE]"}`}
+              >
+                {m.featured ? "Destaque da página" : "Usar como destaque"}
+              </button>
+            </div>
             <div className="flex items-center justify-between px-3 py-2">
               <div className="flex gap-1">
                 <button data-testid={`admin-media-up-${i}`} onClick={() => move(i, -1)} disabled={i === 0} aria-label="Mover para cima" className="rounded-full border border-[#ECCEC8] p-1.5 text-[#7F3B2E] disabled:opacity-30">

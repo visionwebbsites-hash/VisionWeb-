@@ -1,5 +1,5 @@
 import { Instagram, MapPin, Phone } from "lucide-react";
-import { ADDRESS, IG_HANDLE, IG_LINK, IMAGES, MAPS_EMBED, MAPS_LINK, WA_DISPLAY, WA_LINK } from "../data/site";
+import { ADDRESS, IG_HANDLE, IG_LINK, IMAGES, MAPS_EMBED, MAPS_LINK, WA_DISPLAY, WA_LINK, trackWhatsAppConversion } from "../data/site";
 import { CtaButton, Reveal, SectionHeading } from "./Reveal";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 
@@ -62,6 +62,7 @@ export const Location = () => (
                 <a
                   data-testid="localizacao-whatsapp-link"
                   href={WA_LINK}
+                  onClick={() => trackWhatsAppConversion("home", "contact_details")}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-sm font-medium text-[#4A3B34] transition-colors hover:text-[#B05B4B]"
@@ -104,15 +105,6 @@ export const Location = () => (
                 className="flex-1"
               >
                 Como chegar
-              </CtaButton>
-              <CtaButton
-                href={WA_LINK}
-                variant="outline"
-                testId="localizacao-button-whatsapp"
-                icon={<WhatsAppIcon size={16} />}
-                className="flex-1"
-              >
-                Agendar horário
               </CtaButton>
             </div>
           </div>

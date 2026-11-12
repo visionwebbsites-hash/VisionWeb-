@@ -12,9 +12,7 @@ import { Space } from "./components/Space";
 import { Differentials } from "./components/Differentials";
 import { Testimonials } from "./components/Testimonials";
 import { Location } from "./components/Location";
-import { FinalCta } from "./components/FinalCta";
 import { Footer } from "./components/Footer";
-import { FloatingWhatsApp } from "./components/FloatingWhatsApp";
 import { PromoBanner } from "./components/PromoBanner";
 import { Seo } from "./components/Seo";
 import CategoryPage from "./pages/CategoryPage";
@@ -74,10 +72,8 @@ const Home = () => {
         <Differentials />
         <Testimonials />
         <Location />
-        <FinalCta />
       </main>
       <Footer />
-      <FloatingWhatsApp />
     </div>
   );
 };

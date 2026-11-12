@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight, MapPin, X } from "lucide-react";
 import { api, API } from "../lib/api";
-import { ADDRESS, SERVICES, waMsg } from "../data/site";
+import { ADDRESS, SERVICES, trackWhatsAppConversion, waLinkForCategory } from "../data/site";
 import { Seo } from "../components/Seo";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
@@ -42,9 +42,17 @@ export default function CategoryPage({ category, serviceId, path, title, seoTitl
 
 
   const service = SERVICES.find((s) => s.id === serviceId);
-  const bookLink = waMsg(
-    `Olá! Vi a página de ${service?.title || title} da Senhorita M e gostaria de agendar um horário. 😊`
-  );
+  const staticHighlightImage = category === "cabelos"
+    ? "/images/destaque-cabelos.webp"
+    : category === "manicure"
+      ? "/images/destaque-manicure.webp"
+      : null;
+  const featuredImage = items.find((item) => item.featured);
+  const highlightImage = featuredImage?.url
+    ? `${BASE}${featuredImage.url}`
+    : staticHighlightImage;
+  const galleryItems = items.filter((item) => !item.featured);
+  const bookLink = waLinkForCategory(category);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -93,7 +101,14 @@ export default function CategoryPage({ category, serviceId, path, title, seoTitl
               "radial-gradient(circle at 50% 0%, rgba(192,108,92,0.13) 0%, rgba(253,251,247,0) 68%)",
           }}
         >
-          <div className="mx-auto max-w-3xl px-4 pb-16 pt-14 text-center sm:px-6 lg:pt-20">
+          <div
+            className={`mx-auto px-4 pb-16 pt-14 sm:px-6 lg:pt-20 ${
+              highlightImage
+                ? "grid max-w-7xl items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14"
+                : "max-w-3xl text-center"
+            }`}
+          >
+            <div className={highlightImage ? "text-center lg:text-left" : "text-center"}>
             <Reveal>
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#B05B4B]">
                 <Link to="/" className="transition-colors hover:text-[#7F3B2E]" data-testid="breadcrumb-home">
@@ -106,21 +121,24 @@ export default function CategoryPage({ category, serviceId, path, title, seoTitl
             <Reveal delay={0.1}>
               <h1
                 data-testid="category-title"
-                className="mt-5 text-balance font-serif text-4xl font-medium leading-[1.1] tracking-tight sm:text-5xl"
+                className={`mt-5 text-balance font-serif font-medium leading-[1.1] tracking-tight ${
+                  highlightImage ? "text-5xl sm:text-6xl lg:text-7xl" : "text-4xl sm:text-5xl"
+                }`}
               >
                 {title}
               </h1>
             </Reveal>
             <Reveal delay={0.18}>
-              <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-[#827168] sm:text-lg">
+              <p className={`mx-auto mt-6 max-w-xl text-base leading-relaxed text-[#827168] sm:text-lg ${highlightImage ? "lg:mx-0 lg:text-xl" : ""}`}>
                 {intro}
               </p>
             </Reveal>
             <Reveal delay={0.26}>
-              <div className="mt-8 flex flex-col items-center gap-4">
+              <div className={`mt-8 flex flex-col items-center gap-4 ${highlightImage ? "lg:items-start" : ""}`}>
                 <a
                   data-testid="category-cta-whatsapp"
                   href={bookLink}
+                  onClick={() => trackWhatsAppConversion(category, "hero")}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2.5 rounded-full bg-[#B05B4B] px-8 py-4 text-sm font-semibold uppercase tracking-[0.1em] text-white shadow-[0_14px_30px_-10px_rgba(176,91,75,0.6)] transition-[transform,background-color] duration-300 hover:-translate-y-0.5 hover:bg-[#984A3B]"
@@ -134,18 +152,18 @@ export default function CategoryPage({ category, serviceId, path, title, seoTitl
                 </p>
               </div>
             </Reveal>
-            {service && (
-              <Reveal delay={0.3}>
-                <ul className="mx-auto mt-10 flex max-w-xl flex-wrap justify-center gap-2.5">
-                  {service.items.map((item) => (
-                    <li
-                      key={item}
-                      className="rounded-full border border-[#ECCEC8] bg-white px-4 py-1.5 text-xs font-medium text-[#4A3B34]"
-                    >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+            </div>
+            {highlightImage && (
+              <Reveal delay={0.18}>
+                <div className="overflow-hidden rounded-[2rem] border border-[#ECCEC8] shadow-[0_24px_60px_-28px_rgba(44,24,16,0.35)]">
+                  <img
+                    src={highlightImage}
+                    alt={`Trabalhos de ${title} realizados na Senhorita M`}
+                    className="aspect-[16/9] w-full object-cover"
+                    fetchPriority="high"
+                    decoding="async"
+                  />
+                </div>
               </Reveal>
             )}
           </div>
@@ -153,6 +171,25 @@ export default function CategoryPage({ category, serviceId, path, title, seoTitl
 
         <section className="bg-[#F9F5F0] py-16 sm:py-20" data-testid="category-gallery-section">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            {service && (
+              <Reveal>
+                <div className="mb-12 text-center">
+                  <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#B05B4B]">
+                    Serviços de {title}
+                  </p>
+                  <ul className="mx-auto mt-5 flex max-w-4xl flex-wrap justify-center gap-3">
+                    {service.items.map((item) => (
+                      <li
+                        key={item}
+                        className="rounded-full border border-[#ECCEC8] bg-white px-5 py-2.5 text-sm font-medium text-[#4A3B34] sm:text-base"
+                      >
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+            )}
             <Reveal>
               <h2 className="text-center font-serif text-3xl font-medium text-[#2C1810] sm:text-4xl">
                 {category === "cilios" ? "Galeria de cílios" : "Trabalhos realizados"}
@@ -167,7 +204,7 @@ export default function CategoryPage({ category, serviceId, path, title, seoTitl
             )}
             {!loading && !loadError && items.length === 0 && <p className="mt-8 text-center text-sm text-[#827168]">Nenhuma foto disponível nesta galeria.</p>}
             <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3">
-              {items.map((m, i) => (
+              {galleryItems.map((m, i) => (
                 <Reveal key={m.id} delay={i * 0.05}>
                   <button
                     data-testid={`category-gallery-item-${i}`}
@@ -237,12 +274,12 @@ export default function CategoryPage({ category, serviceId, path, title, seoTitl
           </div>
         </section>
 
-        <FinalCta />
+      <FinalCta serviceCategory={category} />
       </main>
       <Footer />
-      <FloatingWhatsApp />
+      <FloatingWhatsApp serviceCategory={category} />
 
-      {lightbox !== null && items[lightbox] && (
+      {lightbox !== null && galleryItems[lightbox] && (
         <div
           data-testid="gallery-lightbox"
           className="fixed inset-0 z-[80] flex items-center justify-center bg-[#2C1810]/95 p-4"
@@ -267,12 +304,12 @@ export default function CategoryPage({ category, serviceId, path, title, seoTitl
             </button>
           )}
           <img
-            src={`${BASE}${items[lightbox].url}`}
-            alt={photoAlt(items[lightbox], lightbox, title)}
+            src={`${BASE}${galleryItems[lightbox].url}`}
+            alt={photoAlt(galleryItems[lightbox], lightbox, title)}
             className="max-h-[85vh] max-w-full rounded-xl object-contain"
             onClick={(e) => e.stopPropagation()}
           />
-          {lightbox < items.length - 1 && (
+          {lightbox < galleryItems.length - 1 && (
             <button
               data-testid="lightbox-next"
               aria-label="Próxima foto"

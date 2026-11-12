@@ -199,10 +199,13 @@ async def upload_media(
     file: UploadFile = File(...),
     category: str = Form(...),
     procedure: Optional[str] = Form(None),
+    featured: bool = Form(False),
     admin=Depends(get_admin),
 ):
     raw = optimize_image(await file.read())
     count = await db.media.count_documents({"category": category})
+    if featured:
+        await db.media.update_many({"category": category}, {"$unset": {"featured": ""}})
     doc = {
         "id": str(uuid.uuid4()),
         "category": category,
@@ -211,6 +214,7 @@ async def upload_media(
         "content_type": "image/jpeg",
         "data": base64.b64encode(raw).decode(),
         "order": count,
+        "featured": featured,
         "created_at": datetime.now(timezone.utc).isoformat(),
     }
     await db.media.insert_one(doc)
@@ -230,6 +234,15 @@ async def replace_media(media_id: str, file: UploadFile = File(...), admin=Depen
     if result.matched_count == 0:
         raise HTTPException(404, "Mídia não encontrada")
     return {"id": media_id, "url": f"/api/media/file/{media_id}"}
+
+@api_router.put("/admin/media/{media_id}/feature")
+async def feature_media(media_id: str, admin=Depends(get_admin)):
+    media = await db.media.find_one({"id": media_id}, {"_id": 0, "category": 1})
+    if not media:
+        raise HTTPException(404, "Mídia não encontrada")
+    await db.media.update_many({"category": media["category"]}, {"$unset": {"featured": ""}})
+    await db.media.update_one({"id": media_id}, {"$set": {"featured": True}})
+    return {"id": media_id, "category": media["category"], "featured": True}
 
 @api_router.delete("/admin/media/{media_id}")
 async def delete_media(media_id: str, admin=Depends(get_admin)):
