@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Eye, Feather, Hand, Scissors, Sparkles, Waves } from "lucide-react";
-import { SERVICES, WA_LINK } from "../data/site";
+import { SERVICES } from "../data/site";
 import { Reveal, SectionHeading } from "./Reveal";
-import { WhatsAppIcon } from "./WhatsAppIcon";
 
 const ICONS = {
   "nail-designer": Hand,
@@ -84,20 +83,7 @@ export const Services = () => (
         })}
       </div>
 
-      <Reveal delay={0.1}>
-        <div className="mt-12 text-center">
-          <a
-            data-testid="servicos-cta-whatsapp"
-            href={WA_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2.5 rounded-full bg-[#B05B4B] px-8 py-4 text-sm font-semibold uppercase tracking-[0.1em] text-white shadow-[0_14px_30px_-10px_rgba(176,91,75,0.6)] transition-[transform,background-color] duration-300 hover:-translate-y-0.5 hover:bg-[#984A3B]"
-          >
-            <WhatsAppIcon size={16} />
-            Agendar pelo WhatsApp
-          </a>
-        </div>
-      </Reveal>
+
     </div>
   </section>
 );
