@@ -15,11 +15,32 @@ const BASE = API.replace(/\/api$/, "");
 
 export default function EsteticaPage() {
   const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
+  const [reloadCount, setReloadCount] = useState(0);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    api.get("/media?category=estetica").then((res) => setItems(res.data.items || [])).catch(() => {});
-  }, []);
+    const controller = new AbortController();
+    let disposed = false;
+    let retryTimer;
+    setLoading(true);
+    setLoadError(false);
+    const load = async (attempt = 0) => {
+      try {
+        const res = await api.get("/media?category=estetica", { signal: controller.signal, timeout: 35000 });
+        if (disposed) return;
+        setItems(res.data.items || []);
+        setLoading(false);
+      } catch {
+        if (disposed) return;
+        if (attempt < 2) retryTimer = setTimeout(() => load(attempt + 1), 2000);
+        else { setLoadError(true); setLoading(false); }
+      }
+    };
+    load();
+    return () => { disposed = true; clearTimeout(retryTimer); controller.abort(); };
+  }, [reloadCount]);
 
   const imgFor = (key) => items.find((m) => m.procedure === key);
 
@@ -74,6 +95,8 @@ export default function EsteticaPage() {
 
         <section className="bg-[#F9F5F0] py-16 sm:py-20" data-testid="estetica-procedures-section">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            {loading && <p role="status" className="mb-8 text-center text-sm text-[#827168]">Carregando fotos. Isso pode levar alguns instantes...</p>}
+            {loadError && <div role="alert" className="mb-8 text-center text-sm text-[#7F3B2E]"><p>Não foi possível carregar as fotos agora.</p><button type="button" onClick={() => setReloadCount((value) => value + 1)} className="mt-3 rounded-full border border-[#ECCEC8] bg-white px-5 py-2 font-semibold">Tentar novamente</button></div>}
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {ESTETICA_PROCEDURES.map((p, i) => {
                 const media = imgFor(p.key);
@@ -98,7 +121,7 @@ export default function EsteticaPage() {
                         <div className="flex aspect-[4/3] w-full flex-col items-center justify-center gap-3 bg-gradient-to-br from-[#FAF0EE] to-[#EFE7DF]">
                           <Flower2 size={22} className="text-[#B05B4B]" strokeWidth={1.5} />
                           <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B05B4B]/80">
-                            Imagem em breve
+                            {loading ? "Carregando imagem..." : loadError ? "Imagem indisponível no momento" : "Imagem em breve"}
                           </span>
                         </div>
                       )}
