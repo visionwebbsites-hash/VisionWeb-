@@ -13,16 +13,19 @@ import { WhatsAppIcon } from "../components/WhatsAppIcon";
 
 const BASE = API.replace(/\/api$/, "");
 
-const OTHER_PAGES = {
-  cabelos: [
-    { path: "/manicure", label: "Manicure" },
-    { path: "/estetica", label: "Estética Corporal" },
-  ],
-  manicure: [
-    { path: "/cabelos", label: "Cabelos" },
-    { path: "/estetica", label: "Estética Corporal" },
-  ],
-};
+const CATEGORY_PAGES = [
+  { path: "/cabelos", label: "Cabelos" },
+  { path: "/manicure", label: "Manicure" },
+  { path: "/sobrancelhas", label: "Sobrancelhas" },
+  { path: "/maquiagem", label: "Maquiagem" },
+  { path: "/cilios", label: "Cílios" },
+  { path: "/estetica", label: "Estética Corporal" },
+];
+
+const isIllustrative = (media) => (media?.filename || "").startsWith("ilustrativa-ia-");
+const photoAlt = (media, index, title) => isIllustrative(media)
+  ? `${title} — imagem ilustrativa gerada por IA`
+  : `${title} — trabalho ${index + 1} realizado na Senhorita M, Santa Mônica, Florianópolis`;
 
 const ytId = (url) => {
   const m = url?.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([\w-]{6,})/);
@@ -49,6 +52,8 @@ export default function CategoryPage({ category, serviceId, path, title, seoTitl
     let disposed = false;
     let retryTimer;
     setItems([]);
+    setVideos([]);
+    setLightbox(null);
     setLoading(true);
     setLoadError(false);
     const load = async (attempt = 0) => {
@@ -150,7 +155,7 @@ export default function CategoryPage({ category, serviceId, path, title, seoTitl
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <Reveal>
               <h2 className="text-center font-serif text-3xl font-medium text-[#2C1810] sm:text-4xl">
-                Trabalhos realizados
+                {category === "cilios" ? "Galeria de cílios" : "Trabalhos realizados"}
               </h2>
             </Reveal>
             {loading && <p role="status" className="mt-8 text-center text-sm text-[#827168]">Carregando fotos. Isso pode levar alguns instantes...</p>}
@@ -171,13 +176,14 @@ export default function CategoryPage({ category, serviceId, path, title, seoTitl
                     aria-label={`Ampliar foto ${i + 1} de ${title}`}
                   >
                     <img
-                      src={`${BASE}${m.url}`}
-                      alt={`${title} — trabalho ${i + 1} realizado na Senhorita M, Santa Mônica, Florianópolis`}
+                      src={`${BASE}${m.url}${m.updated_at ? `?v=${encodeURIComponent(m.updated_at)}` : ""}`}
+                      alt={photoAlt(m, i, title)}
                       className="aspect-[3/4] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                       loading="lazy"
                       decoding="async"
                     />
                   </button>
+                  {isIllustrative(m) && <p className="mt-2 text-xs leading-relaxed text-[#827168]">Imagem ilustrativa gerada por IA. Não representa um trabalho do salão.</p>}
                 </Reveal>
               ))}
             </div>
@@ -211,7 +217,7 @@ export default function CategoryPage({ category, serviceId, path, title, seoTitl
 
         <section className="border-t border-[#ECCEC8] bg-[#FDFBF7] py-14">
           <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-center gap-4 px-4">
-            {(OTHER_PAGES[category] || []).map((p) => (
+            {CATEGORY_PAGES.filter((page) => page.path !== path).map((p) => (
               <Link
                 key={p.path}
                 data-testid={`category-link-${p.label.toLowerCase().replace(/\s/g, "-")}`}
@@ -262,7 +268,7 @@ export default function CategoryPage({ category, serviceId, path, title, seoTitl
           )}
           <img
             src={`${BASE}${items[lightbox].url}`}
-            alt={`${title} — trabalho ${lightbox + 1} ampliado`}
+            alt={photoAlt(items[lightbox], lightbox, title)}
             className="max-h-[85vh] max-w-full rounded-xl object-contain"
             onClick={(e) => e.stopPropagation()}
           />
