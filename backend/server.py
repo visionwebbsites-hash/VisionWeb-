@@ -135,7 +135,7 @@ async def media_file(media_id: str):
     doc = await db.media.find_one({"id": media_id})
     if not doc:
         raise HTTPException(404, "Mídia não encontrada")
-    return Response(content=base64.b64decode(doc["data"]), media_type=doc.get("content_type", "image/jpeg"))
+    return Response(content=base64.b64decode(doc["data"]), media_type=doc.get("content_type", "image/jpeg"), headers={"Cache-Control": "no-cache"})
 
 @api_router.get("/videos")
 async def list_videos(category: Optional[str] = None):
@@ -216,6 +216,21 @@ async def upload_media(
     await db.media.insert_one(doc)
     return {"id": doc["id"], "category": category, "procedure": procedure, "order": count, "url": f"/api/media/file/{doc['id']}"}
 
+@api_router.put("/admin/media/{media_id}/file")
+async def replace_media(media_id: str, file: UploadFile = File(...), admin=Depends(get_admin)):
+    # Validate the new file before changing any stored image. Keep its category and order.
+    try:
+        raw = optimize_image(await file.read())
+    except (OSError, ValueError):
+        raise HTTPException(400, "Arquivo de imagem inválido")
+    result = await db.media.update_one({"id": media_id}, {"$set": {
+        "data": base64.b64encode(raw).decode(), "filename": file.filename,
+        "content_type": "image/jpeg", "updated_at": datetime.now(timezone.utc).isoformat(),
+    }})
+    if result.matched_count == 0:
+        raise HTTPException(404, "Mídia não encontrada")
+    return {"id": media_id, "url": f"/api/media/file/{media_id}"}
+
 @api_router.delete("/admin/media/{media_id}")
 async def delete_media(media_id: str, admin=Depends(get_admin)):
     res = await db.media.delete_one({"id": media_id})
@@ -236,6 +251,13 @@ async def create_video(input: VideoInput, admin=Depends(get_admin)):
     await db.videos.insert_one(doc)
     doc.pop("_id", None)
     return doc
+
+@api_router.put("/admin/videos/{video_id}")
+async def update_video(video_id: str, input: VideoInput, admin=Depends(get_admin)):
+    result = await db.videos.update_one({"id": video_id}, {"$set": input.model_dump()})
+    if result.matched_count == 0:
+        raise HTTPException(404, "Vídeo não encontrado")
+    return {"ok": True}
 
 @api_router.delete("/admin/videos/{video_id}")
 async def delete_video(video_id: str, admin=Depends(get_admin)):
