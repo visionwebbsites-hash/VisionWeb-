@@ -127,6 +127,25 @@ function GalleryTab() {
     }
   };
 
+  const replace = async (media, input) => {
+    const replacement = input.files?.[0];
+    if (!replacement) return;
+    setBusy(true);
+    setMsg("");
+    try {
+      const fd = new FormData();
+      fd.append("file", replacement);
+      await api.put(`/admin/media/${media.id}/file`, fd);
+      setMsg("Foto substituída. Categoria e posição preservadas.");
+      load();
+    } catch (err) {
+      setMsg(formatApiError(err.response?.data?.detail));
+    } finally {
+      input.value = "";
+      setBusy(false);
+    }
+  };
+
   const move = async (i, dir) => {
     const arr = [...items];
     const j = i + dir;
@@ -213,7 +232,13 @@ function GalleryTab() {
       <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
         {items.map((m, i) => (
           <div key={m.id} className="overflow-hidden rounded-2xl border border-[#ECCEC8] bg-white" data-testid={`admin-media-${m.id}`}>
-            <img src={`${BASE}${m.url}`} alt={m.filename || "Foto da galeria"} className="aspect-[3/4] w-full object-cover" loading="lazy" />
+            <img src={`${BASE}${m.url}${m.updated_at ? `?v=${encodeURIComponent(m.updated_at)}` : ""}`} alt={m.filename || "Foto da galeria"} className="aspect-[3/4] w-full object-cover" loading="lazy" />
+            <label className="mx-3 mt-3 block text-xs font-semibold text-[#7F3B2E]">
+              Substituir foto
+              <input type="file" accept="image/*" disabled={busy} aria-label={`Substituir foto ${i + 1}`}
+                data-testid={`admin-media-replace-${i}`} className="mt-1 block w-full min-w-0 text-[10px]"
+                onChange={(e) => replace(m, e.currentTarget)} />
+            </label>
             <div className="flex items-center justify-between px-3 py-2">
               <div className="flex gap-1">
                 <button data-testid={`admin-media-up-${i}`} onClick={() => move(i, -1)} disabled={i === 0} aria-label="Mover para cima" className="rounded-full border border-[#ECCEC8] p-1.5 text-[#7F3B2E] disabled:opacity-30">
@@ -422,6 +447,21 @@ function VideosTab() {
     }
   };
 
+  const edit = async (e, video) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    try {
+      await api.put(`/admin/videos/${video.id}`, {
+        category: video.category, url: form.elements.url.value,
+        title: form.elements.title.value || null,
+      });
+      setMsg("Vídeo atualizado.");
+      load();
+    } catch (err) {
+      setMsg(formatApiError(err.response?.data?.detail));
+    }
+  };
+
   const del = async (id) => {
     if (!window.confirm("Remover este vídeo?")) return;
     await api.delete(`/admin/videos/${id}`).catch(() => {});
@@ -462,6 +502,18 @@ function VideosTab() {
             <a href={v.url} target="_blank" rel="noopener noreferrer" className="min-w-0 flex-1 truncate text-sm text-[#4A3B34] underline underline-offset-4">
               {v.title || v.url}
             </a>
+            <details className="w-full text-xs text-[#7F3B2E]">
+              <summary className="cursor-pointer font-semibold">Editar ou substituir vídeo</summary>
+              <form onSubmit={(e) => edit(e, v)} className="mt-3 flex flex-wrap gap-3">
+                <label className="min-w-0 flex-1">Link do vídeo
+                  <input name="url" type="url" required defaultValue={v.url} className="mt-1 w-full rounded-xl border border-[#ECCEC8] px-3 py-2" />
+                </label>
+                <label className="min-w-0 flex-1">Título
+                  <input name="title" defaultValue={v.title || ""} className="mt-1 w-full rounded-xl border border-[#ECCEC8] px-3 py-2" />
+                </label>
+                <button className="rounded-full bg-[#B05B4B] px-5 py-2 text-white">Salvar vídeo</button>
+              </form>
+            </details>
             <button data-testid={`admin-video-del-${v.id}`} onClick={() => del(v.id)} aria-label="Remover vídeo" className="rounded-full border border-[#ECCEC8] p-2 text-[#984A3B] hover:bg-[#FAF0EE]">
               <Trash2 size={14} />
             </button>
