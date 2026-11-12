@@ -10,6 +10,10 @@ const CATEGORIES = [
   { id: "cabelos", label: "Cabelos" },
   { id: "manicure", label: "Manicure" },
   { id: "estetica", label: "Estética" },
+  { id: "sobrancelhas", label: "Sobrancelhas" },
+  { id: "maquiagem", label: "Maquiagem" },
+  { id: "cilios", label: "Cílios" },
+
 ];
 
 export default function AdminPanel() {
