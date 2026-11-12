@@ -43,10 +43,12 @@ export const Footer = () => (
               <li key={l.id}>
                 <a
                   data-testid={`footer-${l.testId.replace("nav-", "")}`}
-                  href={`#${l.id}`}
+                  href={`/#${l.id}`}
                   onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection(l.id);
+                    if (window.location.pathname === "/") {
+                      e.preventDefault();
+                      scrollToSection(l.id);
+                    }
                   }}
                   className="text-sm text-[#D8BFB6] transition-colors hover:text-[#FDFBF7]"
                 >
@@ -68,6 +70,15 @@ export const Footer = () => (
               <Link data-testid="footer-link-estetica" to="/estetica" className="text-sm text-[#D8BFB6] transition-colors hover:text-[#FDFBF7]">
                 Estética Corporal
               </Link>
+            </li>
+            <li>
+              <Link data-testid="footer-link-sobrancelhas" to="/sobrancelhas" className="text-sm text-[#D8BFB6] transition-colors hover:text-[#FDFBF7]">Sobrancelhas</Link>
+            </li>
+            <li>
+              <Link data-testid="footer-link-maquiagem" to="/maquiagem" className="text-sm text-[#D8BFB6] transition-colors hover:text-[#FDFBF7]">Maquiagem</Link>
+            </li>
+            <li>
+              <Link data-testid="footer-link-cilios" to="/cilios" className="text-sm text-[#D8BFB6] transition-colors hover:text-[#FDFBF7]">Cílios</Link>
             </li>
           </ul>
         </nav>
