@@ -103,9 +103,9 @@ export const Header = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[60] flex flex-col bg-[#FDFBF7] lg:hidden"
+            className="fixed inset-0 z-[60] flex flex-col overflow-y-auto bg-[#FDFBF7] lg:hidden"
           >
-            <div className="flex h-[68px] items-center justify-between border-b border-[#ECCEC8]/70 px-4">
+            <div className="flex h-[68px] shrink-0 items-center justify-between border-b border-[#ECCEC8]/70 px-4">
               <span className="font-serif text-xl font-semibold italic text-[#2C1810]">
                 Senhorita M
               </span>
