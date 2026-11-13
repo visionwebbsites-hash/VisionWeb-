@@ -1,8 +1,8 @@
-import { WA_LINK } from "../data/site";
+import { trackWhatsAppConversion, waLinkForCategory } from "../data/site";
 import { Reveal } from "./Reveal";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 
-export const FinalCta = () => (
+export const FinalCta = ({ serviceCategory = "home" }) => (
   <section
     data-testid="cta-final-section"
     className="grain relative overflow-hidden bg-[#2C1810] py-24 sm:py-32"
@@ -37,7 +37,8 @@ export const FinalCta = () => (
       <Reveal delay={0.3}>
         <a
           data-testid="cta-final-button-whatsapp"
-          href={WA_LINK}
+          href={waLinkForCategory(serviceCategory)}
+          onClick={() => trackWhatsAppConversion(serviceCategory, "final_cta")}
           target="_blank"
           rel="noopener noreferrer"
           className="mt-10 inline-flex items-center gap-3 rounded-full bg-[#FDFBF7] px-10 py-5 text-sm font-semibold uppercase tracking-[0.12em] text-[#7F3B2E] shadow-[0_20px_45px_-15px_rgba(0,0,0,0.5)] transition-[transform,background-color,box-shadow] duration-300 hover:-translate-y-1 hover:bg-white sm:px-12"

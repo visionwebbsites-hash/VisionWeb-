@@ -1,10 +1,11 @@
-import { WA_LINK } from "../data/site";
+import { trackWhatsAppConversion, waLinkForCategory } from "../data/site";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 
-export const FloatingWhatsApp = () => (
+export const FloatingWhatsApp = ({ serviceCategory = "home" }) => (
   <a
     data-testid="whatsapp-floating-button"
-    href={WA_LINK}
+    href={waLinkForCategory(serviceCategory)}
+    onClick={() => trackWhatsAppConversion(serviceCategory, "floating_button")}
     target="_blank"
     rel="noopener noreferrer"
     aria-label="Agende seu horário pelo WhatsApp"

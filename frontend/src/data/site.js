@@ -203,6 +203,30 @@ export const REVIEWS = [
 export const waMsg = (text) =>
   `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
 
+const WHATSAPP_MESSAGES = {
+  cabelos: "Olá! Vim pela página de Cabelos da Senhorita M e gostaria de agendar um horário. 😊",
+  manicure: "Olá! Vim pela página de Manicure da Senhorita M e gostaria de agendar um horário. 😊",
+  estetica: "Olá! Vim pela página de Estética Corporal da Senhorita M e gostaria de agendar um horário. 😊",
+};
+
+export const waLinkForCategory = (category, customMessage) => {
+  const message = customMessage || WHATSAPP_MESSAGES[category];
+  return message ? waMsg(message) : WA_LINK;
+};
+
+export const trackWhatsAppConversion = (category, placement, procedure) => {
+  if (typeof window === "undefined") return;
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: "whatsapp_conversion",
+    conversion_name: `whatsapp_${category || "home"}`,
+    service_category: category || "home",
+    cta_placement: placement,
+    ...(procedure ? { service_procedure: procedure } : {}),
+    page_path: window.location.pathname,
+  });
+};
+
 export const ESTETICA_PROCEDURES = [
   {
     key: "drenagem-linfatica",

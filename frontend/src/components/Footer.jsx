@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { Instagram, Phone } from "lucide-react";
-import { ADDRESS, IG_HANDLE, IG_LINK, IMAGES, NAV_LINKS, WA_DISPLAY, WA_LINK, scrollToSection } from "../data/site";
+import { ADDRESS, IG_HANDLE, IG_LINK, IMAGES, NAV_LINKS, WA_DISPLAY, scrollToSection } from "../data/site";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 
-export const Footer = () => (
+export const Footer = () => {
+  return (
   <footer
     data-testid="footer-section"
     className="border-t border-white/10 bg-[#2C1810] pb-10 pt-16 text-[#D8BFB6]"
@@ -88,16 +89,13 @@ export const Footer = () => (
             Contato
           </p>
           <div className="mt-5 space-y-3.5">
-            <a
+            <p
               data-testid="footer-whatsapp-link"
-              href={WA_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 text-sm transition-colors hover:text-[#FDFBF7]"
+              className="flex items-center gap-3 text-sm"
             >
               <WhatsAppIcon size={15} className="text-[#C06C5C]" />
               {WA_DISPLAY}
-            </a>
+            </p>
             <a
               data-testid="footer-instagram-link"
               href={IG_LINK}
@@ -130,4 +128,5 @@ export const Footer = () => (
       </div>
     </div>
   </footer>
-);
+  );
+};
