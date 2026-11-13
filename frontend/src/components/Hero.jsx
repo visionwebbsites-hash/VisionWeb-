@@ -116,15 +116,7 @@ export const Hero = () => {
               decoding="async"
               data-testid="hero-main-image"
             />
-            <a
-              data-testid="hero-banner-cta-whatsapp"
-              href={WA_LINK}
-              onClick={() => trackWhatsAppConversion("home", "hero_banner")}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Agende seu horário pelo WhatsApp"
-              className="absolute bottom-[1.5%] left-1/2 block h-[8.5%] w-[40%] -translate-x-1/2 cursor-pointer rounded-full transition-colors duration-300 hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#B05B4B]"
-            />
+
           </motion.div>
         </div>
       </div>

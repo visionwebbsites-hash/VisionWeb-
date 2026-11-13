@@ -164,17 +164,6 @@ export default function EsteticaPage() {
                           {p.desc}
                         </p>
                         <p className="mt-3 text-xs italic text-[#B05B4B]">{p.benefit}</p>
-                        <a
-                          data-testid={`estetica-cta-${p.key}`}
-                          href={link}
-                          onClick={() => trackWhatsAppConversion("estetica", "procedure_card", p.key)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="mt-5 inline-flex items-center justify-center gap-2 rounded-full border border-[#B05B4B]/45 px-5 py-3 text-xs font-semibold uppercase tracking-[0.12em] text-[#7F3B2E] transition-colors duration-300 hover:border-[#B05B4B] hover:bg-[#B05B4B] hover:text-white"
-                        >
-                          <WhatsAppIcon size={14} />
-                          Agendar pelo WhatsApp
-                        </a>
                       </div>
                     </article>
                   </Reveal>
