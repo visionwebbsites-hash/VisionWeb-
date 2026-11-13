@@ -1,7 +1,7 @@
-import { Eye, Feather, Hand, Scissors, Sparkles, Waves } from "lucide-react";
-import { SERVICES, WA_LINK } from "../data/site";
+import { Link } from "react-router-dom";
+import { ArrowRight, Eye, Feather, Hand, Scissors, Sparkles, Waves } from "lucide-react";
+import { SERVICES } from "../data/site";
 import { Reveal, SectionHeading } from "./Reveal";
-import { WhatsAppIcon } from "./WhatsAppIcon";
 
 const ICONS = {
   "nail-designer": Hand,
@@ -10,6 +10,16 @@ const ICONS = {
   sobrancelhas: Feather,
   maquiagem: Sparkles,
   "estetica-corporal": Waves,
+};
+
+const PAGE_LINKS = {
+  sobrancelhas: { path: "/sobrancelhas", label: "Ver galeria de sobrancelhas" },
+  maquiagem: { path: "/maquiagem", label: "Ver galeria de maquiagem" },
+  cilios: { path: "/cilios", label: "Ver galeria de cílios" },
+
+  "nail-designer": { path: "/manicure", label: "Ver galeria de manicure" },
+  cabeleireira: { path: "/cabelos", label: "Ver galeria de cabelos" },
+  "estetica-corporal": { path: "/estetica", label: "Ver estética corporal" },
 };
 
 export const Services = () => (
@@ -61,21 +71,22 @@ export const Services = () => (
                     </li>
                   ))}
                 </ul>
-                <a
-                  data-testid={`servicos-cta-${cat.id}`}
-                  href={WA_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-8 inline-flex items-center justify-center gap-2.5 rounded-full border border-[#B05B4B]/45 px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#7F3B2E] transition-[background-color,color,border-color] duration-300 hover:border-[#B05B4B] hover:bg-[#B05B4B] hover:text-white"
-                >
-                  <WhatsAppIcon size={15} />
-                  Agendar pelo WhatsApp
-                </a>
+                {PAGE_LINKS[cat.id] && (
+                  <Link
+                    data-testid={`servicos-link-${cat.id}`}
+                    to={PAGE_LINKS[cat.id].path}
+                    className="mt-8 inline-flex items-center justify-center gap-2 rounded-full border border-[#B05B4B]/45 px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#7F3B2E] transition-colors duration-300 hover:border-[#B05B4B] hover:bg-[#FAF0EE]"
+                  >
+                    {PAGE_LINKS[cat.id].label}
+                    <ArrowRight size={14} />
+                  </Link>
+                )}
               </article>
             </Reveal>
           );
         })}
       </div>
+
     </div>
   </section>
 );

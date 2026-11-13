@@ -1,8 +1,7 @@
-import { IMAGES, WA_LINK } from "../data/site";
+import { IMAGES } from "../data/site";
 import { BeforeAfter } from "./BeforeAfter";
 import { PhotoSlot } from "./PhotoSlot";
-import { CtaButton, Reveal, SectionHeading } from "./Reveal";
-import { WhatsAppIcon } from "./WhatsAppIcon";
+import { Reveal, SectionHeading } from "./Reveal";
 
 const GALLERY = [
   { src: IMAGES.hairWaves, label: "Cabelo longo com ondas", testId: "resultados-gallery-ondas" },
@@ -54,17 +53,6 @@ export const Results = () => (
         ))}
       </div>
 
-      <Reveal delay={0.15}>
-        <div className="mt-12 text-center">
-          <CtaButton
-            href={WA_LINK}
-            testId="resultados-cta-whatsapp"
-            icon={<WhatsAppIcon size={16} />}
-          >
-            Agendar pelo WhatsApp
-          </CtaButton>
-        </div>
-      </Reveal>
     </div>
   </section>
 );

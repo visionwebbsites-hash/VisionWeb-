@@ -79,6 +79,17 @@ Header com logo + nav + CTA; Hero "BELEZA QUE VALORIZA A SUA ESSÊNCIA"; barra d
 ## Atualizações (08/09/2026 — décimo terceiro ciclo)
 - Serviços: card Maquiagem passou a listar 3 itens — Maquiagem social, Maquiagem para eventos, Maquiagem para produção fotográfica.
 
+## Atualizações (07/11/2026 — grande atualização VisionWeb)
+- 3 páginas novas: /cabelos, /manicure (galeria dinâmica via API + lightbox + vídeos YouTube + links cruzados + SEO próprio) e /estetica (6 cards de procedimentos com imagens ilustrativas IA identificadas como ilustrativas; Shiatsu sem imagem — placeholder "Imagem em breve"). Recebidas 5 imagens por categoria (não 6).
+- Painel admin em /admin (login JWT+bcrypt, brute-force protection, seed via env): gerencia galerias (upload/excluir/reordenar), banners (criar/ativar/desativar/excluir, posição fixa "topo da home") e vídeos (links YouTube por categoria). Mídias em base64 no MongoDB (persistente, sem serviço externo/custo).
+- Home: PromoBanner (só aparece com banner ativo), cards de Serviços com links para as páginas + 1 CTA único (removidos CTAs repetidos por card), footer com links das páginas + telefone tel:, Location com link "Ligar:".
+- SEO: title/description/canonical/OG por página (react-helmet-async), robots.txt (disallow /admin), sitemap.xml (4 URLs no domínio www.senhoritamsalao.com.br), JSON-LD BeautySalon, página 404 visual. LIMITAÇÃO: SPA sem SSR — meta tags são injetadas no client (avaliar prerender no futuro se SEO exigir).
+- GTM-TG65Q8W9 preservado e verificado ativo. Home original intacta.
+- Telefone oficial verificado: (48) 99211-8889 em texto em Localização e Rodapé, com link tel:+5548992118889. Consistente em todas as páginas.
+
+## Atualizações (07/11/2026 — complemento)
+- Recebidas as 3 imagens que faltavam: 6ª foto de Cabelos (loiro perfil), 6ª de Manicure (unhas rosé cromadas) e a ilustrativa de Shiatsu (Estética). Enviadas via API do painel admin; todas as galerias agora têm 6 itens e os 6 cards de Estética têm imagem (sem placeholders).
+
 ## Backlog priorizado
 - P1: Pixel Meta/Google Ads + GA4 (GTM já instalado — falta configurar tags no painel).
 - P2: Domínio próprio + build de produção.

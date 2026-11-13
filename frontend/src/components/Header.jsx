@@ -1,16 +1,22 @@
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { IMAGES, NAV_LINKS, WA_LINK, scrollToSection } from "../data/site";
-import { WhatsAppIcon } from "./WhatsAppIcon";
+import { IMAGES, NAV_LINKS, scrollToSection } from "../data/site";
 
 export const Header = () => {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const go = (e, id) => {
     e.preventDefault();
     setOpen(false);
-    scrollToSection(id);
+    if (location.pathname === "/") {
+      scrollToSection(id);
+    } else {
+      navigate(`/#${id}`);
+    }
   };
 
   return (
@@ -56,26 +62,6 @@ export const Header = () => {
         </nav>
 
         <div className="flex items-center gap-3">
-          <a
-            data-testid="nav-cta-whatsapp-button"
-            href={WA_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden items-center gap-2 rounded-full bg-[#B05B4B] px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.08em] text-white shadow-[0_8px_20px_-8px_rgba(176,91,75,0.6)] transition-[transform,background-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:bg-[#984A3B] sm:inline-flex"
-          >
-            <WhatsAppIcon size={15} />
-            Agendar pelo WhatsApp
-          </a>
-          <a
-            data-testid="nav-mobile-whatsapp-icon"
-            href={WA_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Agendar pelo WhatsApp"
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-[#B05B4B] text-white sm:hidden"
-          >
-            <WhatsAppIcon size={17} />
-          </a>
           <button
             data-testid="mobile-menu-trigger"
             onClick={() => setOpen(true)}
@@ -96,9 +82,9 @@ export const Header = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[60] flex flex-col bg-[#FDFBF7] lg:hidden"
+            className="fixed inset-0 z-[60] flex flex-col overflow-y-auto bg-[#FDFBF7] lg:hidden"
           >
-            <div className="flex h-[68px] items-center justify-between border-b border-[#ECCEC8]/70 px-4">
+            <div className="flex h-[68px] shrink-0 items-center justify-between border-b border-[#ECCEC8]/70 px-4">
               <span className="font-serif text-xl font-semibold italic text-[#2C1810]">
                 Senhorita M
               </span>
@@ -126,19 +112,6 @@ export const Header = () => {
                   {l.label}
                 </motion.a>
               ))}
-              <motion.a
-                data-testid="mobile-menu-cta-whatsapp"
-                href={WA_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.45, duration: 0.5 }}
-                className="mt-8 inline-flex items-center justify-center gap-2.5 rounded-full bg-[#B05B4B] px-7 py-4 text-sm font-semibold uppercase tracking-[0.1em] text-white"
-              >
-                <WhatsAppIcon size={17} />
-                Agendar pelo WhatsApp
-              </motion.a>
             </nav>
           </motion.div>
         )}

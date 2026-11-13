@@ -25,8 +25,7 @@ export const NAV_LINKS = [
   { id: "contato", label: "Contato", testId: "nav-link-contato" },
 ];
 
-export const scrollToSection = (id) => {
-  const el = document.getElementById(id);
+export const scrollToSection = (id) => {  const el = document.getElementById(id);
   if (!el) return;
   if (window.__lenis) {
     window.__lenis.scrollTo(el, { offset: -68, duration: 1.4 });
@@ -198,6 +197,72 @@ export const REVIEWS = [
   {
     name: "Livian Gaia",
     text: "Amei o resultado, meu cabelo ficou com um brilho surreal. Minha unha ficou linda",
+  },
+];
+
+export const waMsg = (text) =>
+  `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
+
+const WHATSAPP_MESSAGES = {
+  cabelos: "Olá! Vim pela página de Cabelos da Senhorita M e gostaria de agendar um horário. 😊",
+  manicure: "Olá! Vim pela página de Manicure da Senhorita M e gostaria de agendar um horário. 😊",
+  estetica: "Olá! Vim pela página de Estética Corporal da Senhorita M e gostaria de agendar um horário. 😊",
+};
+
+export const waLinkForCategory = (category, customMessage) => {
+  const message = customMessage || WHATSAPP_MESSAGES[category];
+  return message ? waMsg(message) : WA_LINK;
+};
+
+export const trackWhatsAppConversion = (category, placement, procedure) => {
+  if (typeof window === "undefined") return;
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: "whatsapp_conversion",
+    conversion_name: `whatsapp_${category || "home"}`,
+    service_category: category || "home",
+    cta_placement: placement,
+    ...(procedure ? { service_procedure: procedure } : {}),
+    page_path: window.location.pathname,
+  });
+};
+
+export const ESTETICA_PROCEDURES = [
+  {
+    key: "drenagem-linfatica",
+    name: "Drenagem Linfática",
+    desc: "Técnica de massagem suave e ritmada que estimula a circulação linfática do corpo.",
+    benefit: "Sensação de leveza e bem-estar",
+  },
+  {
+    key: "massagem-modeladora",
+    name: "Massagem Modeladora",
+    desc: "Massagem com movimentos firmes e envolventes, dedicada ao cuidado corporal.",
+    benefit: "Momento de cuidado e revitalização",
+  },
+  {
+    key: "massagem-relaxante",
+    name: "Massagem Relaxante",
+    desc: "Movimentos leves e contínuos que aliviam as tensões do dia a dia.",
+    benefit: "Descanso profundo e relaxamento",
+  },
+  {
+    key: "massagem-terapeutica",
+    name: "Massagem Terapêutica",
+    desc: "Massagem focada em pontos de tensão muscular, com toque acolhedor.",
+    benefit: "Alívio e conforto para o corpo",
+  },
+  {
+    key: "shiatsu",
+    name: "Shiatsu",
+    desc: "Técnica de origem japonesa que utiliza pressão suave dos dedos em pontos específicos.",
+    benefit: "Equilíbrio e relaxamento",
+  },
+  {
+    key: "ventosaterapia",
+    name: "Ventosaterapia",
+    desc: "Terapia tradicional com ventosas que criam uma sucção suave sobre a pele.",
+    benefit: "Experiência de bem-estar e relaxamento",
   },
 ];
 

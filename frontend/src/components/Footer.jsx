@@ -1,8 +1,10 @@
-import { Instagram } from "lucide-react";
-import { ADDRESS, IG_HANDLE, IG_LINK, IMAGES, NAV_LINKS, WA_DISPLAY, WA_LINK, scrollToSection } from "../data/site";
+import { Link } from "react-router-dom";
+import { Instagram, Phone } from "lucide-react";
+import { ADDRESS, IG_HANDLE, IG_LINK, IMAGES, NAV_LINKS, WA_DISPLAY, scrollToSection } from "../data/site";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 
-export const Footer = () => (
+export const Footer = () => {
+  return (
   <footer
     data-testid="footer-section"
     className="border-t border-white/10 bg-[#2C1810] pb-10 pt-16 text-[#D8BFB6]"
@@ -42,10 +44,12 @@ export const Footer = () => (
               <li key={l.id}>
                 <a
                   data-testid={`footer-${l.testId.replace("nav-", "")}`}
-                  href={`#${l.id}`}
+                  href={`/#${l.id}`}
                   onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection(l.id);
+                    if (window.location.pathname === "/") {
+                      e.preventDefault();
+                      scrollToSection(l.id);
+                    }
                   }}
                   className="text-sm text-[#D8BFB6] transition-colors hover:text-[#FDFBF7]"
                 >
@@ -53,6 +57,30 @@ export const Footer = () => (
                 </a>
               </li>
             ))}
+            <li>
+              <Link data-testid="footer-link-cabelos" to="/cabelos" className="text-sm text-[#D8BFB6] transition-colors hover:text-[#FDFBF7]">
+                Cabelos
+              </Link>
+            </li>
+            <li>
+              <Link data-testid="footer-link-manicure" to="/manicure" className="text-sm text-[#D8BFB6] transition-colors hover:text-[#FDFBF7]">
+                Manicure
+              </Link>
+            </li>
+            <li>
+              <Link data-testid="footer-link-estetica" to="/estetica" className="text-sm text-[#D8BFB6] transition-colors hover:text-[#FDFBF7]">
+                Estética Corporal
+              </Link>
+            </li>
+            <li>
+              <Link data-testid="footer-link-sobrancelhas" to="/sobrancelhas" className="text-sm text-[#D8BFB6] transition-colors hover:text-[#FDFBF7]">Sobrancelhas</Link>
+            </li>
+            <li>
+              <Link data-testid="footer-link-maquiagem" to="/maquiagem" className="text-sm text-[#D8BFB6] transition-colors hover:text-[#FDFBF7]">Maquiagem</Link>
+            </li>
+            <li>
+              <Link data-testid="footer-link-cilios" to="/cilios" className="text-sm text-[#D8BFB6] transition-colors hover:text-[#FDFBF7]">Cílios</Link>
+            </li>
           </ul>
         </nav>
 
@@ -61,16 +89,13 @@ export const Footer = () => (
             Contato
           </p>
           <div className="mt-5 space-y-3.5">
-            <a
+            <p
               data-testid="footer-whatsapp-link"
-              href={WA_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 text-sm transition-colors hover:text-[#FDFBF7]"
+              className="flex items-center gap-3 text-sm"
             >
               <WhatsAppIcon size={15} className="text-[#C06C5C]" />
               {WA_DISPLAY}
-            </a>
+            </p>
             <a
               data-testid="footer-instagram-link"
               href={IG_LINK}
@@ -80,6 +105,14 @@ export const Footer = () => (
             >
               <Instagram size={15} className="text-[#C06C5C]" strokeWidth={1.8} />
               {IG_HANDLE}
+            </a>
+            <a
+              data-testid="footer-phone-link"
+              href="tel:+5548992118889"
+              className="flex items-center gap-3 text-sm transition-colors hover:text-[#FDFBF7]"
+            >
+              <Phone size={15} className="text-[#C06C5C]" strokeWidth={1.8} />
+              {WA_DISPLAY}
             </a>
           </div>
         </div>
@@ -95,4 +128,5 @@ export const Footer = () => (
       </div>
     </div>
   </footer>
-);
+  );
+};

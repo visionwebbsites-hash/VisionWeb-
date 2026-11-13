@@ -1,6 +1,5 @@
-import { IMAGES, WA_LINK } from "../data/site";
-import { CtaButton, Reveal, SectionHeading } from "./Reveal";
-import { WhatsAppIcon } from "./WhatsAppIcon";
+import { IMAGES } from "../data/site";
+import { Reveal, SectionHeading } from "./Reveal";
 
 export const About = () => (
   <section
@@ -36,17 +35,6 @@ export const About = () => (
             acolhedor, nossa equipe trabalha para entregar resultados que
             valorizam a beleza e a personalidade de cada cliente.
           </p>
-        </Reveal>
-        <Reveal delay={0.38}>
-          <div className="mt-9">
-            <CtaButton
-              href={WA_LINK}
-              testId="sobre-cta-whatsapp"
-              icon={<WhatsAppIcon size={16} />}
-            >
-              Quero agendar
-            </CtaButton>
-          </div>
         </Reveal>
       </div>
 
